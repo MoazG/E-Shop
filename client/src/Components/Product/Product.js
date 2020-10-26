@@ -1,8 +1,12 @@
 import classes from "./Product.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../actions/cartActions";
 
 const Product = ({ product }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={`${classes.Product} ${classes.Product_conatiner_inner}`}>
       <div className={classes.Product_img}>
@@ -64,7 +68,7 @@ const Product = ({ product }) => {
       <div className={classes.Action_link}>
         <ul>
           <li className={classes.Add_cart}>
-            <button>
+            <button onClick={() => dispatch(addToCart(product._id, 1))}>
               <i className="fas fa-shopping-cart"></i>
             </button>
             <div className={classes.Tooltip_text}>

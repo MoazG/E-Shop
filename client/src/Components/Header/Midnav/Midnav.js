@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import SearchBox from "../SearchBox/SearchBox";
 import classes from "./Midnav.module.css";
+
 const Midnav = ({ showSideBar, setShowSideBar }) => {
   const [showSearch, setShowSearch] = useState(false);
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  cartItems.map((item) => console.log(item.qty));
   return (
     <div className={classes.Mid_nav}>
       <div className="container">
@@ -43,24 +48,57 @@ const Midnav = ({ showSideBar, setShowSideBar }) => {
             </div>
             <div className={classes.Cart}>
               <div className={classes.Cart_counter}>
-                <p>0</p>
+                <p>{cartItems.reduce((acc, item) => acc + item.qty, 0)}</p>
               </div>
               <div className={classes.Cart_icons}>
                 <button className={classes.Nav_btn}>
                   <i className="fas fa-shopping-bag"></i>
                 </button>
-                <p className={classes.Cart_total_price}>
-                  $<span>0</span>
-                </p>
+
                 <i
                   className={`fa fa-angle-down ${classes.Cart_angle_down}`}
                 ></i>
               </div>
               <div className={classes.Cart_items}>
-                <div className={classes.Visit_cart_btn}>
-                  <a href="shoppingCart.html" className="btn">
-                    View Cart
-                  </a>
+                {cartItems.map((product, i) => (
+                  <div className={classes.Cart_product} key={i}>
+                    <div className={classes.Cart_item_img}>
+                      <img src={product.image[0]} alt="" />
+                    </div>
+                    <div className={classes.Cart_product_info}>
+                      <h2>
+                        {product.name.length > 20
+                          ? product.name.substring(0, 20) + "..."
+                          : product.name}
+                      </h2>
+                      <p>
+                        <strong className={classes.Cart_product_qty}>
+                          {product.qty}
+                        </strong>
+                        x{" "}
+                        <span className={classes.Cart_product_price}>
+                          ${product.price}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+                <div className={classes.Cart_actions}>
+                  <div className={classes.Cart_total}>
+                    <p>Total :</p>
+                    <p className={classes.Cart_total_price}>
+                      ${" "}
+                      {cartItems
+                        .reduce((acc, item) => acc + item.qty * item.price, 0)
+                        .toFixed(2)}
+                    </p>
+                  </div>
+                  <div className={classes.Cart_btn_cont}>
+                    <Link to="/cart" className={classes.Cart_btn}>
+                      View cart
+                    </Link>
+                    <button className={classes.Cart_btn}>Checkout</button>
+                  </div>
                 </div>
               </div>
             </div>
