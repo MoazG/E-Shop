@@ -5,14 +5,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
-import Message from "../../Components/Message";
+// import Message from "../../Components/Message";
 
 const CartScreen = ({ location, match, history }) => {
   const productId = match.params.id;
+
   const qty = location.search ? +location.search.split("=")[1] : 1;
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  console.log(cartItems);
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
@@ -42,24 +44,24 @@ const CartScreen = ({ location, match, history }) => {
           </thead>
           <tbody>
             {cartItems.map((product, i) => (
-              <tr>
-                <td class={classes.Table_product_remove}>
+              <tr key={i}>
+                <td className={classes.Table_product_remove}>
                   <button
                     onClick={() => removeFromCartHandler(product.product)}
                   >
-                    <i class="fas fa-trash-alt"></i>
+                    <i className="fas fa-trash-alt"></i>
                   </button>
                 </td>
-                <td class={classes.Table_product_thumb}>
+                <td className={classes.Table_product_thumb}>
                   <img src={product.image[0]} alt={product.name} />
                 </td>
-                <td class={classes.Table_product_name}>
-                  <Link to={`/product/${productId}`}>{product.name}</Link>
+                <td className={classes.Table_product_name}>
+                  <Link to={`/product/${product.product}`}>{product.name}</Link>
                 </td>
-                <td class={classes.Table_product_price}>
+                <td className={classes.Table_product_price}>
                   <p>$ {product.price}</p>
                 </td>
-                <td class={classes.Table_product_qty}>
+                <td className={classes.Table_product_qty}>
                   <select
                     className={classes.Qty_dropdown}
                     value={product.qty}
@@ -79,10 +81,10 @@ const CartScreen = ({ location, match, history }) => {
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="2" className={classes.Cart_total}>
+              <td colSpan="2" className={classes.Cart_total}>
                 <p>Cart Total</p>
               </td>
-              <td colspan="1" className={classes.Cart_total}>
+              <td colSpan="1" className={classes.Cart_total}>
                 <p className={classes.Cart_total_price}>
                   ${" "}
                   {cartItems
@@ -90,13 +92,13 @@ const CartScreen = ({ location, match, history }) => {
                     .toFixed(2)}
                 </p>
               </td>
-              <td colspan="3" className={classes.Cart_options}>
-                <Link
-                  href="/"
+              <td colSpan="3" className={classes.Cart_options}>
+                <button
+                  onClick={checkOutHandler}
                   className={`${classes.Btn} ${classes.Update_cart}`}
                 >
                   Checkout
-                </Link>
+                </button>
                 {/* <Link className={`${classes.Btn} ${classes.Continue_shopping}`}>
                   Continue Shopping
                 </Link> */}

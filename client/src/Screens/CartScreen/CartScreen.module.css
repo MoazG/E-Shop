@@ -77,7 +77,9 @@ td {
 }
 .Cart_table tfoot .Btn {
   display: inline-block;
+  width: 60%;
   background-color: #0063d1;
+  border: none;
   color: white;
   text-align: center;
   border-radius: 3px;
@@ -86,6 +88,7 @@ td {
   font-size: 14px;
   font-weight: 500;
   transition: opacity 500ms ease-in-out, background-color 400ms;
+  cursor: pointer;
 }
 .Cart_options {
   border: 1px solid #cdcdcd;
