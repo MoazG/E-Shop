@@ -58,13 +58,22 @@
   padding: 0;
   border: none;
   cursor: pointer;
-  transition: background 400ms;
+  transition: background-color 400ms;
 }
 .Login_form input[type="submit"]:hover {
   background-color: #242424;
 }
 .Login_form input[type="button"]:focus {
   box-shadow: none;
+}
+.Login_form input[type="radio"] {
+  width: auto;
+  text-align: left;
+  margin: 1rem 0.3rem;
+  border: none;
+  display: inline-block;
+  height: auto;
+  padding: 1rem;
 }
 .Form_option {
   height: 40px;

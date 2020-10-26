@@ -97,7 +97,9 @@ const Midnav = ({ showSideBar, setShowSideBar }) => {
                     <Link to="/cart" className={classes.Cart_btn}>
                       View cart
                     </Link>
-                    <button className={classes.Cart_btn}>Checkout</button>
+                    <Link to="/shipping" className={classes.Cart_btn}>
+                      Checkout
+                    </Link>
                   </div>
                 </div>
               </div>
