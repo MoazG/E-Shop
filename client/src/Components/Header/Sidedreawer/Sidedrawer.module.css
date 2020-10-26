@@ -1,0 +1,78 @@
+.Sidedrawer {
+  width: 70%;
+  height: 100%;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  background-color: #333333;
+  padding: 2rem 1rem;
+  transition: transform 300ms ease-out;
+}
+.Sidedrawer_ul {
+  list-style: none;
+}
+.Sidedrawer_li {
+  border-bottom: 1px solid #262626;
+  padding: 0.6rem 0.1rem;
+}
+.Sidedrawer_link {
+  color: rgba(255, 255, 255, 0.7);
+}
+.Sidedrawer_login {
+  background: #444;
+  border-top: 1px solid #5e5e5e;
+  color: #999;
+  display: block;
+  font-size: 0.8571428571rem;
+  margin-top: 0.4rem;
+  /* padding: 0.2857142857rem 1.0714285714rem; */
+  /* padding-left: 1rem; */
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.Login_link {
+  display: inline-block;
+  color: #999;
+
+  width: 100%;
+  padding: 0.1rem 0;
+}
+.Sidedrawer_logout_btn {
+  background: none;
+  text-align: left;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.1rem 0;
+}
+.Sidedrawer_label {
+  background: #444;
+  border-top: 1px solid #5e5e5e;
+  color: #999;
+  display: block;
+  font-size: 0.8571428571rem;
+  margin-top: 0.4rem;
+  /* padding: 0.2857142857rem 1.0714285714rem; */
+  /* padding-left: 1rem; */
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .Sidedrawer {
+    display: none;
+  }
+}
+
+.Open {
+  transform: translateX(0);
+}
+.Close {
+  transform: translateX(-100%);
+}

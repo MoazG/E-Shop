@@ -1,0 +1,128 @@
+.Profile_screen_cont {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.User_profile_cont {
+  flex: 0 1 30%;
+  border: 2px solid #f8f9f9;
+  padding: 5px;
+}
+.Order_list_cont {
+  flex: 0 1 69%;
+  border: 2px solid #f8f9f9;
+  padding: 5px;
+}
+
+.User_profile_form {
+  width: 100%;
+  padding: 20px;
+  margin: 20px auto;
+  font-size: 16px;
+  /* background-color: #f3f3f3; */
+  /* box-shadow: 0 0 2pt 1pt grey;
+  border-radius: 2px; */
+}
+
+.User_profile_form input {
+  display: block;
+  margin: 5px auto 5px;
+  border: 2px solid #ebebeb;
+  border-radius: 4px;
+  width: 100%;
+  height: 38px;
+  padding: 5px;
+}
+.Invalid_feedback {
+  margin-bottom: 5px;
+  padding: 5px;
+  text-align: center;
+  color: red;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.User_profile_form input:focus {
+  box-shadow: 0 0 2pt 1pt #0063d1;
+  border: 1px solid #fff;
+}
+.Is_invalid {
+  border: 1px solid #fff;
+  box-shadow: 0 0 2pt 1pt red;
+}
+
+.Is_invalid:focus {
+  box-shadow: 0 0 2pt 1pt red;
+}
+.Invalid_info {
+  display: none;
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.User_profile_form input[type="submit"] {
+  margin-top: 10px;
+  width: 100%;
+  height: 35px;
+  background-color: #0063d1;
+  color: white;
+  line-height: 35px;
+  text-align: center;
+
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: background 400ms;
+}
+.User_profile_form input[type="submit"]:hover {
+  background-color: #242424;
+}
+
+.Order_list_table {
+  width: 100%;
+}
+.Order_list_table,
+th,
+td {
+  border: 1px solid #cdcdcd;
+  border-collapse: collapse;
+  text-align: center;
+}
+.Order_list_table {
+  margin-top: 20px;
+  width: 100%;
+}
+.Order_list_table th {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.9rem;
+  background-color: #f8f9f9;
+  border-bottom: 2px solid #0063d1;
+}
+.Order_list_table tbody {
+  font-size: 0.9rem;
+}
+.Order_list_table td {
+  max-height: 100px;
+}
+
+@media (max-width: 640px) {
+  .Profile_screen_cont {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+  }
+  .User_profile_cont {
+    flex: 0 1 100%;
+    border: 2px solid #f8f9f9;
+    padding: 5px;
+  }
+  .Order_list_cont {
+    flex: 0 1 100%;
+    border: 2px solid #f8f9f9;
+    padding: 5px;
+  }
+}

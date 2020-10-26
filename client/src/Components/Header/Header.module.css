@@ -1,0 +1,13 @@
+.Header {
+  height: 150px;
+}
+
+.Desktop_only {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .Header {
+    height: 60px;
+  }
+}
