@@ -1,7 +1,12 @@
 const products = [
   {
     name: "Apple watch",
-    image: "./img/hot_deals_product1.webp",
+    image: [
+      "/img/hot_deals_product1.webp",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description: "The world first smart watch",
     brand: "Apple",
     category: "Electronics",
@@ -12,7 +17,12 @@ const products = [
   },
   {
     name: "iPhone 11 Pro 256GB Memory",
-    image: "./img/Iphone11Pro.jpg",
+    image: [
+      "/img/Iphone11Pro.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -24,7 +34,12 @@ const products = [
   },
   {
     name: "Galaxy S20 Plus",
-    image: "./img/GalaxyS20_plus.jpg",
+    image: [
+      "/img/GalaxyS20_plus.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Introducing Galaxy S20 plus. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Samsung",
@@ -36,7 +51,12 @@ const products = [
   },
   {
     name: "Galaxy A71",
-    image: "./img/GalaxyA71.jpg",
+    image: [
+      "/img/GalaxyA71.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Introducing Galaxy A71. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Samsung",
@@ -48,7 +68,12 @@ const products = [
   },
   {
     name: "Iphone X",
-    image: "./img/IphoneX.jpg",
+    image: [
+      "/img/IphoneX.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Iphone X. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -60,7 +85,12 @@ const products = [
   },
   {
     name: "Iphone Xs",
-    image: "./img/IphoneXs.jpg",
+    image: [
+      "/img/IphoneXs.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Iphone Xs. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -72,7 +102,12 @@ const products = [
   },
   {
     name: "Iphone 11",
-    image: "./img/Iphone11.jpg",
+    image: [
+      "/img/Iphone11.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Iphone 11. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -84,7 +119,12 @@ const products = [
   },
   {
     name: "Ipad mini 5",
-    image: "./img/Apple_ipad_mini5.jpg",
+    image: [
+      "/img/Apple_ipad_mini5.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Ipad mini 5. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -96,7 +136,12 @@ const products = [
   },
   {
     name: "Huawei Tablet",
-    image: "./img/Huawei_Matepad_Pro2020.jpg",
+    image: [
+      "/img/Huawei_Matepad_Pro2020.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "introducing ...... A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Huawei",
@@ -108,7 +153,12 @@ const products = [
   },
   {
     name: "Xaiomi Redmi Note9",
-    image: "./img/Xaiomi_Redmi_Note9.jpg",
+    image: [
+      "/img/Xaiomi_Redmi_Note9.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "introducing ...... A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Xaiomi",
@@ -120,7 +170,12 @@ const products = [
   },
   {
     name: "Samsung Galaxy Watch Active2",
-    image: "./img/Samsung_Watch_A2.jpg",
+    image: [
+      "/img/Samsung_Watch_A2.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "introducing ...... A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Samsung",
@@ -132,7 +187,12 @@ const products = [
   },
   {
     name: "Apple Watch Sport Series 3 ",
-    image: "./img/Apple_Watch_s3.jpg",
+    image: [
+      "/img/Apple_Watch_s3.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description: "The world first smart watch",
     brand: "Apple",
     category: "Electronics",
@@ -143,7 +203,12 @@ const products = [
   },
   {
     name: "Fifa20",
-    image: "./img/Fifa20.jpg",
+    image: [
+      "/img/Fifa20.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "introducing ...... A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Ps4",
@@ -155,7 +220,12 @@ const products = [
   },
   {
     name: "Pes 18",
-    image: "./img/Pes18.jpg",
+    image: [
+      "/img/Pes18.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "introducing ...... A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Ps4",
@@ -167,7 +237,12 @@ const products = [
   },
   {
     name: "Beats by Dr. Dre Studio3",
-    image: "./img/beatsS3.jpg",
+    image: [
+      "/img/beatsS3.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "introducing ...... A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "beats",
@@ -179,7 +254,12 @@ const products = [
   },
   {
     name: "Apple MacBook Pro",
-    image: "./img/laptops/Apple_MacBook_Pro1.jpg",
+    image: [
+      "/img/laptops/Apple_MacBook_Pro1.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Apple",
@@ -191,7 +271,12 @@ const products = [
   },
   {
     name: "HP Pavilion x360",
-    image: "./img/laptops/HP_Pavilion_x360_1.jpg",
+    image: [
+      "/img/laptops/HP_Pavilion_x360_1.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Apple",
@@ -203,7 +288,12 @@ const products = [
   },
   {
     name: "Huawei MateBook D",
-    image: "./img/laptops/Huawei_MateBook_D_Laptop1.jpg",
+    image: [
+      "/img/laptops/Huawei_MateBook_D_Laptop1.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Huawei",
@@ -215,8 +305,12 @@ const products = [
   },
   {
     name: "Microsoft SurfacePro X2-in-1",
-    image:
-      "./img/laptops/Microsoft_Surface_Pro_X_2-in-1_Laptop_Detachable_Tablet1.jpg",
+    image: [
+      "/img/laptops/Microsoft_Surface_Pro_X_2-in-1_Laptop_Detachable_Tablet1.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Microsoft",
@@ -228,7 +322,12 @@ const products = [
   },
   {
     name: "Dell Inspiron 14 3493",
-    image: "./img/laptops/Dell_Inspiron_14_3493.jpg",
+    image: [
+      "/img/laptops/Dell_Inspiron_14_3493.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Intel Core i5-1035G1 (10th Gen), NVIDIA GeForce MX230 (2 GB), 1 TB HDD",
     brand: "Dell",
@@ -240,7 +339,12 @@ const products = [
   },
   {
     name: "Canon SELPHY CP1300",
-    image: "./img/keyboard/Canon_SELPHY_CP1300_Color_Photo_Printer.jpg",
+    image: [
+      "/img/keyboard/Canon_SELPHY_CP1300_Color_Photo_Printer.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Cannon",
@@ -252,7 +356,12 @@ const products = [
   },
   {
     name: "Epson EcoTank L805",
-    image: "./img/keyboard/Epson_EcoTank_L805.jpg",
+    image: [
+      "/img/keyboard/Epson_EcoTank_L805.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Printer",
@@ -264,7 +373,12 @@ const products = [
   },
   {
     name: "Google Daydream View",
-    image: "./img/keyboard/Google_Daydream_View.jpg",
+    image: [
+      "/img/keyboard/Google_Daydream_View.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+      "/img/sample.jpg",
+    ],
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
     brand: "Google",

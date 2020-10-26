@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 // @route GET api/products/
 // @access Public
 export const getProducts = asyncHandler(async (req, res) => {
-  const pagesize = 2;
+  const pagesize = 10;
   const page = Number(req.query.pageNumber) || 1;
   const keyword = req.query.keyword
     ? {
@@ -57,7 +57,12 @@ export const createProduct = asyncHandler(async (req, res) => {
     name: "Sample name",
     price: 0,
     user: req.user._id,
-    image: "/images/sample.jpg",
+    image: [
+      "/images/sample.jpg",
+      "/images/sample.jpg",
+      "/images/sample.jpg",
+      "/images/sample.jpg",
+    ],
     brand: "Sample brand",
     category: "Sample category",
     countInStock: 0,
