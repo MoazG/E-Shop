@@ -18,3 +18,8 @@
   border-top: 0.3rem #0063d1 solid;
   color: #0063d1;
 }
+@media (max-width: 640px) {
+  .Checkout_steps {
+    width: 100%;
+  }
+}

@@ -120,12 +120,13 @@ const ProfileScreen = ({ location, history }) => {
               <th>DATE</th>
               <th>TOTAL</th>
               <th>DELIVERED</th>
+              <th>Details</th>
             </tr>
           </thead>
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td>{order._id}</td>
+                <td className={classes.Order_id}>{order._id}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>
                   {order.isPaid ? (
@@ -142,8 +143,8 @@ const ProfileScreen = ({ location, history }) => {
                   )}
                 </td>
                 <td>
-                  <Link to={`/order/${order._id}`}>
-                    <button>Details</button>
+                  <Link to={`/order/${order._id}`} className={classes.Btn}>
+                    Details
                   </Link>
                 </td>
               </tr>

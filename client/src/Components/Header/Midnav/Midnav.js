@@ -9,7 +9,7 @@ const Midnav = ({ showSideBar, setShowSideBar }) => {
   const [showSearch, setShowSearch] = useState(false);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  cartItems.map((item) => console.log(item.qty));
+
   return (
     <div className={classes.Mid_nav}>
       <div className="container">
@@ -51,7 +51,10 @@ const Midnav = ({ showSideBar, setShowSideBar }) => {
                 <p>{cartItems.reduce((acc, item) => acc + item.qty, 0)}</p>
               </div>
               <div className={classes.Cart_icons}>
-                <button className={classes.Nav_btn}>
+                <button
+                  className={classes.Nav_btn}
+                  style={{ marginRight: "3px" }}
+                >
                   <i className="fas fa-shopping-bag"></i>
                 </button>
 

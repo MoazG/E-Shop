@@ -1,6 +1,7 @@
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_RESET_ITEMS,
   CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
@@ -32,6 +33,8 @@ export const cartReducer = (
           (elm) => elm.product !== action.payload
         ),
       };
+    case CART_RESET_ITEMS:
+      return { cartItems: [], shippingAddress: {} };
     case CART_SAVE_SHIPPING_ADDRESS:
       return {
         ...state,

@@ -23,6 +23,7 @@
   cursor: pointer;
   padding: 10px;
   width: 15%;
+  min-width: 60px;
   background: #0063d1;
   color: white;
   border: 3px solid #0063d1;

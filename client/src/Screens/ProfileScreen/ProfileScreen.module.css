@@ -82,6 +82,7 @@
 
 .Order_list_table {
   width: 100%;
+  table-layout: auto;
 }
 .Order_list_table,
 th,
@@ -103,10 +104,32 @@ td {
   border-bottom: 2px solid #0063d1;
 }
 .Order_list_table tbody {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 .Order_list_table td {
+  padding: 0.9rem;
   max-height: 100px;
+}
+.Order_id {
+  overflow: auto;
+}
+.Btn {
+  display: inline-block;
+  width: 100%;
+  background-color: #0063d1;
+  border: 1px solid #0063d1;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 400ms ease-in-out;
+  cursor: pointer;
+}
+.Btn:hover {
+  background-color: #242424;
+  border: 1px solid #242424;
 }
 
 @media (max-width: 640px) {
@@ -124,5 +147,37 @@ td {
     flex: 0 1 100%;
     border: 2px solid #f8f9f9;
     padding: 5px;
+  }
+
+  .Order_list_table,
+  th,
+  td {
+    border: 1px solid #cdcdcd;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  .Order_list_table {
+    table-layout: fixed;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .Order_list_table th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 0.5rem;
+    background-color: #f8f9f9;
+    border-bottom: 2px solid #0063d1;
+  }
+  .Order_list_table tbody {
+    font-size: 1rem;
+  }
+  .Order_list_table td {
+    font-size: 0.7rem;
+    padding: 0.5rem;
+  }
+  .Btn {
+    font-size: 0.7rem;
+    padding: 0.4rem;
   }
 }

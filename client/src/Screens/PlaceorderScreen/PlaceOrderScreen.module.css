@@ -1,0 +1,134 @@
+.Placeorder_cont {
+  display: flex;
+  justify-content: space-between;
+}
+.Payment_info {
+  flex: 0 1 64%;
+  margin-right: 1%;
+  padding: 1rem;
+  border: 1px solid #cdcdcd;
+  background-color: #fff;
+}
+.Order_summary {
+  flex: 0 0 35%;
+  border: 1px solid #cdcdcd;
+  padding: 1rem;
+  border: 1px solid #cdcdcd;
+  background-color: #fff;
+  height: fit-content;
+}
+
+.Payment_info > div {
+  padding: 1rem;
+  border-bottom: 1px solid #cdcdcd;
+}
+.Payment_info > div:last-child {
+  border-bottom: none;
+}
+.Payment_info h3,
+.Payment_info p {
+  margin-bottom: 0.5rem;
+}
+.Payment_info p {
+  font-size: 1rem;
+}
+.Payment_method,
+.Shipping_address {
+  font-size: 0.9rem;
+}
+/* .Cart_tale_cont {
+  text-align: center;
+} */
+.Cart_table {
+  margin: 0 auto;
+}
+.Cart_table,
+.Cart_table th,
+.Cart_table td {
+  border: 1px solid #cdcdcd;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.Cart_table img {
+  width: 40%;
+  max-height: 100px;
+}
+
+.Cart_table {
+  margin-top: 20px;
+  width: 90%;
+}
+.Cart_table th {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 15px;
+  background-color: #f8f9f9;
+  border-bottom: 2px solid #0063d1;
+}
+.Cart_table tbody {
+  font-size: 1rem;
+  background-color: #fff;
+}
+.Cart_table td {
+  max-height: 100px;
+}
+
+.Order_summary > div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #cdcdcd;
+  padding: 1rem;
+}
+.Btn {
+  display: inline-block;
+  width: 100%;
+  background-color: #0063d1;
+  border: 1px solid #0063d1;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.8rem;
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 400ms ease-in-out;
+  cursor: pointer;
+}
+.Btn:hover {
+  background-color: #242424;
+  border: 1px solid #242424;
+}
+
+@media (max-width: 640px) {
+  .Placeorder_cont {
+    flex-direction: column;
+  }
+  .Payment_info {
+    flex: 0 1 100%;
+    margin-right: 0;
+    padding: 1rem;
+    border: 1px solid #cdcdcd;
+    background-color: #fff;
+  }
+  .Payment_info .List_order_items {
+    padding: 0;
+    /* border-bottom: 1px solid #cdcdcd; */
+  }
+  .Cart_table_cont h4 {
+    padding: 1rem 1rem 0;
+  }
+  .Order_summary {
+    flex: 0 0 100%;
+    border: 1px solid #cdcdcd;
+    margin-top: 0.7rem;
+    padding: 1rem;
+    border: 1px solid #cdcdcd;
+    background-color: #fff;
+    height: fit-content;
+  }
+  .Cart_table tbody {
+    font-size: 0.8rem;
+  }
+}
