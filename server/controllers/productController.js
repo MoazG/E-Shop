@@ -1,5 +1,7 @@
 import Product from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
+import Brand from "../models/brandModal.js";
+import Category from "../models/categoryModel.js";
 
 // @desc Fetch all products
 // @route GET api/products/
@@ -17,6 +19,8 @@ export const getProducts = asyncHandler(async (req, res) => {
     : {};
   const count = await Product.countDocuments({ ...keyword });
   const products = await Product.find({ ...keyword })
+    .populate("category", "name")
+    .populate("brand", "name")
     .limit(pagesize)
     .skip(pagesize * (page - 1));
   res.json({ products, page, pages: Math.ceil(count / pagesize) });
@@ -26,7 +30,10 @@ export const getProducts = asyncHandler(async (req, res) => {
 // @route GET api/products/:id
 // @access Public
 export const getProductById = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id)
+    .populate("category", "name", Category)
+    .populate("brand", "name");
+
   if (!product) {
     res.status(404);
     throw new Error("Product not found");
@@ -63,8 +70,8 @@ export const createProduct = asyncHandler(async (req, res) => {
       "/images/sample.jpg",
       "/images/sample.jpg",
     ],
-    brand: "Sample brand",
-    category: "Sample category",
+    brand: "5f9dc474a5494d23a4e57a98",
+    category: "5f9dc41f12938c35544590d5",
     countInStock: 0,
     numReviews: 0,
     description: "Sample description",
@@ -149,6 +156,41 @@ export const createProductReview = asyncHandler(async (req, res) => {
 // @route   GET /api/products/top
 // @access  Public
 export const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
+  const products = await Product.find({}).sort({ rating: -1 }).limit(4);
   res.json(products);
+});
+
+// @desc get filtered products
+// @route POST api/products/filterBy
+// @access Public
+export const getFilteredProducts = asyncHandler(async (req, res) => {
+  let order = req.body.order ? req.body.order : "desc";
+  let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+  let limit = req.body.limit ? Number(req.body.limit) : 100;
+  let skip = Number(req.body.skip);
+  let findArgs = {};
+  findArgs = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
+
+  for (let key in req.body.filters) {
+    if (req.body.filters[key].length > 0) {
+      findArgs[key] = req.body.filters[key];
+    }
+  }
+  const products = await Product.find(findArgs)
+    .sort([[sortBy, order]])
+    .skip(skip)
+    .limit(limit);
+  if (products) {
+    res.status(201).json(products);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
 });

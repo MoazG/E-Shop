@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
+  filteredProductReducers,
   productCreateReducer,
   productDeleteReducer,
   productDetailsReducers,
@@ -9,6 +10,7 @@ import {
   productReviewCreateReducer,
   productTopRatedReducer,
   productUpdateReducer,
+  searchProductReducers,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import {
@@ -28,6 +30,20 @@ import {
   orderListReducer,
   orderPayReducer,
 } from "./reducers/orderReducer";
+import {
+  categoryCreateReducer,
+  categoryDeleteReducer,
+  categoryDetailsReducer,
+  categoryListReducer,
+  categoryUpdateReducer,
+} from "./reducers/categoryReducers";
+import {
+  brandCreateReducer,
+  brandDeleteReducer,
+  brandDetailsReducer,
+  brandListReducer,
+  brandUpdateReducer,
+} from "./reducers/brandReducers";
 
 const reducer = combineReducers({
   productList: productReducers,
@@ -51,6 +67,18 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
   orderMyList: orderListMyReducer,
   orderList: orderListReducer,
+  categoryList: categoryListReducer,
+  categoryCreate: categoryCreateReducer,
+  categoryDetails: categoryDetailsReducer,
+  categoryUpdate: categoryUpdateReducer,
+  categoryDelete: categoryDeleteReducer,
+  brandList: brandListReducer,
+  brandDetails: brandDetailsReducer,
+  brandUpdate: brandUpdateReducer,
+  brandDelete: brandDeleteReducer,
+  brandCreate: brandCreateReducer,
+  filteredProducts: filteredProductReducers,
+  searchResults: searchProductReducers,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

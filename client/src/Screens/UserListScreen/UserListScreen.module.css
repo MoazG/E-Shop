@@ -1,0 +1,27 @@
+.Userlist_cont {
+  padding: 1rem;
+}
+.Userlist_title {
+  margin-bottom: 1rem;
+}
+.Remove_btn {
+  max-width: 60%;
+  background-color: rgb(199, 11, 11);
+  border: none;
+}
+.Remove_btn:hover {
+  background-color: rgb(139, 8, 8);
+  border: none;
+}
+
+.Edit_btn:hover {
+  background-color: #004ba0;
+  border: 1px solid #004ba0;
+}
+
+@media (max-width: 640px) {
+  .User_table_cont {
+    width: 100%;
+    overflow-y: auto;
+  }
+}

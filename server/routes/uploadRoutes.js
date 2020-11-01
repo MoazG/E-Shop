@@ -17,14 +17,11 @@ const storage = multer.diskStorage({
 });
 
 const checkFileType = (file, cb) => {
-  const fileType = /jpg|jpeg|png/;
-  const fileExt = fileType.test(path.extname(file.originalname).toLowerCase());
-  const mimeType = fileType.test(file.mimeType);
-  if (fileExt && mimeType) {
-    return cb(null, true);
-  } else {
-    cb("images Only");
+  if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+    req.fileValidationError = "Only image files are allowed!";
+    return cb(new Error("Only image files are allowed!"), false);
   }
+  cb(null, true);
 };
 
 const upload = multer({
@@ -34,8 +31,10 @@ const upload = multer({
   },
 });
 
-router.post("/", upload.single("image"), (req, res) => {
-  res.send(`/${req.file.path}`);
+router.post("/", upload.array("image", 4), (req, res) => {
+  let paths = req.files.map((file) => `/${file.path}`);
+  console.log(paths);
+  res.send(paths);
 });
 
 export default router;

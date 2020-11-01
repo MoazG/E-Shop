@@ -9,8 +9,12 @@
   position: relative;
 }
 .Product_conatiner_inner {
-  flex: 0 0 18%;
+  flex: 1 1 18%;
+  flex-wrap: nowrap;
   margin: 2% 1% 1%;
+}
+.Product_1_3 {
+  flex: 0 0 30%;
 }
 .Products_title {
   margin: 10px;
@@ -46,11 +50,8 @@
   transition: opacity 500ms ease-in-out, background 400ms;
 }
 .Add_cart_btn {
-  position: absolute;
-  top: 65%;
-  right: 18%;
   opacity: 0;
-  width: 65%;
+  width: 100%;
   height: 40px;
   line-height: 38px;
   padding: 0;
@@ -63,10 +64,9 @@
   cursor: not-allowed;
 }
 .Action_link {
-  border-top: 1px solid #242424;
-  /* position: absolute;
+  position: absolute;
   left: 5px;
-  top: 8%; */
+  top: 8%;
   /* border: 1px solid green; */
   padding: 2px;
   opacity: 0;
@@ -84,11 +84,11 @@
 }
 .Action_link ul {
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: space-between;
   align-items: center;
-  /* width: 40px;
-  height: 100px; */
+  width: 40px;
+  height: 110px;
 }
 .Action_link ul li {
   color: white;
@@ -117,35 +117,33 @@
 .Tooltip_text {
   background-color: #000;
   position: absolute;
-  /* left: 115%; */
-  /* bottom: 0; */
-  bottom: 112%;
+  left: 115%;
+  bottom: 0;
   z-index: 1;
   font-size: 12px;
   width: 80px;
   height: 30px;
   border-radius: 4px;
   opacity: 0;
-  scale: 0;
+  transform: scale(0);
   transition-property: opacity, scale;
   transition-duration: 400ms;
 }
 .Tooltip_text::after {
   position: absolute;
-  right: 75%;
-  /* bottom: 35%; */
-  bottom: -30%;
+  right: 100%;
+  bottom: 35%;
   content: "";
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: transparent black transparent transparent;
 }
-.Action_link ul li:last-child .Tooltip_text {
+/* .Action_link ul li:last-child .Tooltip_text {
   right: 0;
 }
 .Action_link ul li:last-child .Tooltip_text::after {
   right: 10%;
-}
+} */
 .Action_link li:hover {
   background-color: #242424;
   opacity: 0.9;
@@ -153,7 +151,7 @@
 }
 .Action_link li:hover .Tooltip_text {
   opacity: 0.8;
-  scale: 1;
+  transform: scale(1);
 }
 .Product_label {
   width: 50px;
@@ -185,6 +183,9 @@
     flex: 0 0 48%;
     margin: 2% 1% 1%;
   }
+  .Add_cart_btn {
+    opacity: 1;
+  }
   .Action_link ul li {
     width: 35px;
     height: 35px;
@@ -193,6 +194,7 @@
     border-radius: 50%;
     background-color: #0063d1;
     position: relative;
+
     /* transform: translateX(-10px); */
   }
   .Product_info {
@@ -205,9 +207,21 @@
     margin: 2% 1% 1%;
   }
 }
-@media (min-width: 640px) and (max-width: 960px) {
+@media (min-width: 640px) and (max-width: 1024px) {
+  .Product_conatiner_inner {
+    flex: 0 0 30%;
+    margin: 2% 1% 1%;
+  }
+  .Add_cart_btn {
+    opacity: 0;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1200px) {
   .Product_conatiner_inner {
     flex: 0 0 22.5%;
     margin: 2% 1% 1%;
+  }
+  .Add_cart_btn {
+    opacity: 0;
   }
 }

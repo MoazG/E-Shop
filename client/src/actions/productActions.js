@@ -12,9 +12,15 @@ import {
   PRODUCT_DETAILS_FAILED,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_FILTERS_FAILED,
+  PRODUCT_FILTERS_REQUEST,
+  PRODUCT_FILTERS_SUCCESS,
   PRODUCT_LIST_FAILED,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  PRODUCT_SEARCH_FAILED,
+  PRODUCT_SEARCH_REQUEST,
+  PRODUCT_SEARCH_SUCCESS,
   PRODUCT_TOP_FAIL,
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
@@ -34,9 +40,57 @@ export const listProducts = (keyword = "", pageNumber = "") => async (
     );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: PRODUCT_LIST_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listSearchProducts = (keyword = "") => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_SEARCH_REQUEST });
+    const { data } = await axios.get(
+      `/api/products?keyword=${keyword}&limit=6`
+    );
+    dispatch({ type: PRODUCT_SEARCH_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_SEARCH_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listFilteredProducts = (
+  filters,
+  keyword = "",
+  sortBy = "",
+  order = "",
+  limit = "9",
+  skip
+) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_FILTERS_REQUEST });
+    const { data } = await axios.post(
+      `/api/products/filters?keyword=${keyword}`,
+      {
+        filters,
+        sortBy,
+        order,
+        limit,
+      }
+    );
+    dispatch({ type: PRODUCT_FILTERS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_FILTERS_FAILED,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -1,5 +1,6 @@
 import classes from "./Bottomnav.module.css";
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Bottomnav = () => {
   let categoriesRef = useRef(null);
@@ -22,10 +23,10 @@ const Bottomnav = () => {
             >
               <ul>
                 <li className={classes.Categories_list_container_li}>
-                  <a href="/aaaaaa">
+                  <Link href="/aaaaaa">
                     Mobiles & Tablets
                     <i className="fa fa-angle-right"></i>
-                  </a>
+                  </Link>
                   <ul className={classes.Categories_items_ul}>
                     <li className={classes.Categories_items_li}>
                       {/* <a href="/www">Apple</a> */}
@@ -127,7 +128,7 @@ const Bottomnav = () => {
                   </ul>
                 </li>
                 <li>
-                  <a href="/www">Shop All Categories</a>
+                  <Link to="/products/categories">Shop All Categories</Link>
                 </li>
               </ul>
             </div>

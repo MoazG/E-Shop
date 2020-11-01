@@ -1,5 +1,5 @@
 .Login_form {
-  width: 45%;
+  width: 60%;
   padding: 20px;
   margin: 20px auto;
   font-size: 16px;
@@ -74,6 +74,30 @@
   display: inline-block;
   height: auto;
   padding: 1rem;
+}
+.Login_form input[type="checkbox"] {
+  width: auto;
+  text-align: left;
+  margin: 0.3rem 0.4rem;
+  border: none;
+  display: inline-block;
+  height: auto;
+  padding: 1rem;
+}
+.login_form select {
+  display: inline-block;
+  padding: 0.8rem;
+  width: 30%;
+}
+.Dropdown_cont {
+  margin: 1rem 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Dropdown_cont select {
+  padding: 0.5rem;
+  width: 30%;
 }
 .Form_option {
   height: 40px;

@@ -11,6 +11,7 @@ import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import classes from "./ProductScreen.module.css";
+import Button from "../../Components/UI/Button/Button";
 
 const ProductScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -95,15 +96,13 @@ const ProductScreen = ({ match, history }) => {
   };
   return (
     <React.Fragment>
-      <Link className="btn btn-light my-3" to="/">
-        Go Back
-      </Link>
       {loading ? (
         loadingState()
       ) : error ? (
         errorState()
       ) : (
         <div className="container">
+          {/* <Button href="/">Go Back</Button> */}
           <div className={` ${classes.Product_info_cont}`}>
             <div className={classes.Product_info_img}>
               <div className={classes.Main_img}>
@@ -132,13 +131,17 @@ const ProductScreen = ({ match, history }) => {
                   {product.image &&
                     product.image.map((elm, i) => (
                       <li
-                        onClick={(e) => setMainImageHandler(e)}
                         key={i}
                         className={`${classes.Other_img_li} ${
                           product.image[0] === elm && classes.Active
                         }`}
                       >
-                        <img src={elm} alt={elm} data-imageindex={i} />
+                        <img
+                          onClick={(e) => setMainImageHandler(e)}
+                          src={elm}
+                          alt={elm}
+                          data-imageindex={i}
+                        />
                       </li>
                     ))}
                 </ul>
@@ -185,12 +188,19 @@ const ProductScreen = ({ match, history }) => {
                 </select>
               </div>
               <div className={classes.Add_cart}>
-                <button
+                {/* <button
                   onClick={addToCartHandler}
                   className={classes.Add_cart_btn}
                 >
                   Add To Cart
-                </button>
+                </button> */}
+                <Button
+                  color="primary"
+                  onClick={addToCartHandler}
+                  style={{ width: "100%" }}
+                >
+                  Add To Cart
+                </Button>
               </div>
             </div>
           </div>
@@ -244,9 +254,13 @@ const ProductScreen = ({ match, history }) => {
                       onChange={(e) => setComment(e.target.value)}
                     ></textarea>
                   </div>
-                  <button className={classes.Add_cart_btn} type="submit">
+                  <Button
+                    color="primary"
+                    type="submit"
+                    style={{ width: "100%" }}
+                  >
                     Submit Review
-                  </button>
+                  </Button>
                 </form>
               ) : (
                 <Message>

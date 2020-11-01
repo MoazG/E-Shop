@@ -1,110 +1,160 @@
 .Top_nav {
-  display: none;
+  background: #f8f9f9;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 0.9rem;
+  height: 24%;
+  display: flex;
+  align-items: center;
 }
-@media (min-width: 640px) {
+.Top_nav_ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.Top_nav_ul li a {
+  position: relative;
+  color: black;
+  text-decoration: none;
+  padding: 0px 10px;
+}
+.Login_name {
+  width: 10.8rem;
+  position: relative;
+  cursor: pointer;
+}
+.Login_name > i {
+  margin-left: 5px;
+}
+/* .Login_name::before {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 20px;
+  background: black;
+  top: 50%;
+  right: -6px;
+  transform: translatey(-50%);
+} */
+
+.Top_nav_ul li a:hover {
+  color: #0063d1;
+}
+.Top_nav .my_account_setting {
+  position: relative;
+}
+.Top_nav_li_right {
+  display: flex;
+}
+.My_account_modal,
+.Admin_modal_ul {
+  list-style: none;
+  background-color: #0063d1;
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 1pt 1pt rgb(187, 183, 183);
+  padding: 0.3rem;
+  right: 0.6rem;
+  /* top: 1.4rem; */
+  width: 100%;
+  min-width: 150px;
+  z-index: 1;
+  border-radius: 3px;
+  transform: scaleY(0);
+  transform-origin: top;
+  visibility: hidden;
+  transition: all 0.5s ease-out 0.5s;
+  /* transition: transform 400ms ease-out 300ms, visibilty 300ms ease-in-out 800ms; */
+}
+.My_account_setting:hover .My_account_modal {
+  transform: scaleY(1);
+  visibility: visible;
+  transition: transform 400ms ease-in 300ms;
+}
+.Admin_modal_ul {
+  right: 100%;
+  bottom: 4rem;
+  color: #000;
+  transition: all 0.3s ease-out 0.3s;
+}
+.Admin_modal_cont:hover .Admin_modal_ul {
+  transform: scaleY(1);
+  visibility: visible;
+  transition: transform 400ms ease-in 300ms;
+}
+.My_account_modal li:last-child {
+  border-bottom: none;
+}
+/* .My_account_modal button {
+  width: 100%;
+  padding: 10px;
+} */
+.MY_account_login {
+  text-align: center;
+}
+.MY_account_login p {
+  font-size: 0.8rem;
+}
+.MY_account_login .MY_account_login_btn {
+  display: inline-block;
+  width: 100%;
+  background-color: #eef0f1;
+  /* border: 1px solid #ebebeb; */
+  color: #000;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.4rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 300ms ease-in-out;
+  cursor: pointer;
+}
+.MY_account_login .MY_account_login_btn:hover {
+  background-color: #0063d1;
+
+  color: #fff;
+}
+.My_account_setting .My_account_btn {
+  display: inline-block;
+  background: none;
+  width: 100%;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.My_account_modal li {
+  padding: 0.5rem 0.3rem 0.5rem;
+  border-bottom: 1px solid rgb(187, 183, 183);
+}
+.My_account_modal li:hover {
+  background-color: #f8f9fa;
+  color: #0063d1;
+}
+.My_account_modal .MY_account_login:hover {
+  background-color: #fff;
+  color: #000;
+}
+/* .My_account_modal button {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: 100%;
+} */
+.My_account_modal li i {
+  float: right;
+}
+@media (max-width: 640px) {
   .Top_nav {
-    background: #f8f9f9;
-    border-bottom: 1px solid #ebebeb;
-    font-size: 0.9rem;
-    height: 24%;
-    display: flex;
-    align-items: center;
-  }
-  .Top_nav_ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .Top_nav_ul li a {
-    position: relative;
-    color: black;
-    text-decoration: none;
-    padding: 0px 10px;
-  }
-  .Login_name {
-    position: relative;
-  }
-  .Login_name::before {
-    position: absolute;
-    content: "";
-    width: 1px;
-    height: 20px;
-    background: black;
-    top: 50%;
-    right: -6px;
-    transform: translatey(-50%);
-  }
-
-  .Top_nav_ul li a:hover {
-    color: #0063d1;
-  }
-  .Top_nav .my_account_setting {
-    position: relative;
-  }
-  .Top_nav_li_right {
-    display: flex;
-  }
-  .My_account_modal {
-    list-style: none;
-    background-color: #0063d1;
-    display: block;
-    visibility: hidden;
-    position: absolute;
-    background: #fff;
-    box-shadow: 0 0 1pt 1pt rgb(187, 183, 183);
-    padding: 0.3rem;
-    right: 0.6rem;
-    width: 15%;
-    min-width: 150px;
-    z-index: 1;
-    border-radius: 3px;
-    transform: scaleY(0);
-    transform-origin: top;
-    visibility: hidden;
-    transition: visibility 0ms linear 300ms, transform 400ms 300ms ease-out;
-  }
-  .My_account_setting:hover .My_account_modal {
-    transform: scaleY(1);
-    visibility: visible;
-  }
-  .My_account_modal li:last-child {
-    border-bottom: none;
-  }
-  /* .My_account_modal button {
-    width: 100%;
-    padding: 10px;
-  } */
-  .My_account_setting .My_account_btn {
-    display: inline-block;
-    background: none;
-    width: 100%;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    padding: 0;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: inherit;
-  }
-
-  .My_account_modal li {
-    padding: 0.5rem 0.3rem 0.5rem;
-    border-bottom: 1px solid rgb(187, 183, 183);
-  }
-  .My_account_modal li:hover {
-    background-color: #f8f9fa;
-    color: #0063d1;
-  }
-  /* .My_account_modal button {
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    width: 100%;
-  } */
-  .My_account_modal li i {
-    float: right;
+    display: none;
   }
 }

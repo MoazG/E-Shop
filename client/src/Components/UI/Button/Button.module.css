@@ -1,0 +1,64 @@
+.Btn {
+  display: inline-block;
+  margin: 6px 0;
+  background-color: #e0e0e0;
+  border: none;
+  color: #000;
+  text-align: center;
+  cursor: pointer;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.Default:hover {
+  background-color: #d5d5d5;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.Primary {
+  background-color: #0063d1;
+  color: #fff;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.Primary:hover {
+  background-color: #0b468a;
+}
+.Secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+.Secondary:hover {
+  background-color: #5a6268;
+}
+.Disabled {
+  background-color: #0b468a;
+  color: #5a6268;
+}
+.Btn > i {
+  position: absolute;
+  left: 43%;
+  top: 30%;
+  color: #fff;
+  padding: 0;
+}
+.Loading_spinner {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .Btn {
+  }
+}

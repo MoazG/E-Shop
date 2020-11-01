@@ -1,38 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./Footer.module.css";
 const Footer = () => {
   return (
     <footer className={classes.Footer}>
       <div className="container">
         <div className={classes.Footer_container}>
-          {/* <div className={classes.Footer_section}>
-            <h2>Popular Search</h2>
-            <ul className={classes.Footer_section_ul}>
-              <li>
-                <a href="/aa">Iphone 11Pro</a>
-              </li>
-              <li>
-                <a href="/aa">Samsung Tv</a>
-              </li>
-              <li>
-                <a href="/aa">Microsoft surface</a>
-              </li>
-              <li>
-                <a href="/aa">Iphone Xs</a>
-              </li>
-              <li>
-                <a href="/aa">Samsung Note 10</a>
-              </li>
-            </ul>
-          </div> */}
           <div className={classes.Footer_section}>
             <h2>My Account</h2>
             <ul className={classes.Footer_section_ul}>
               <li>
-                <a href="/aa">My Account</a>
+                <Link href="/profile">My Account</Link>
               </li>
               <li>
-                <a href="/aa">Order History</a>
+                <Link to="/order">Order History</Link>
               </li>
               <li>
                 <a className="wish-list-btn" href="./wishList.html">
@@ -40,7 +21,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/aa">Compare List</a>
+                <Link href="/wishlist">Wish List</Link>
               </li>
             </ul>
           </div>
@@ -48,16 +29,16 @@ const Footer = () => {
             <h2>information</h2>
             <ul className={classes.Footer_section_ul}>
               <li>
-                <a href="/aa">About us</a>
+                <Link to="/a">About us</Link>
               </li>
               <li>
-                <a href="/aa">delivery information</a>
+                <Link href="/aa">delivery information</Link>
               </li>
               <li>
-                <a href="/aa">returns</a>
+                <Link href="/aa">returns</Link>
               </li>
               <li>
-                <a href="/aa">term & condition</a>
+                <Link href="/aa">term & condition</Link>
               </li>
             </ul>
           </div>
@@ -74,11 +55,15 @@ const Footer = () => {
                 <p>We are here to help</p>
               </div>
             </div>
-            <div className={classes.Follow_us}>
+            <div className={`${classes.Follow_us}`}>
               <h2>follow us</h2>
               <ul>
                 <li>
-                  <a href="https://www.facebook.com">
+                  <a
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i
                       className="fab fa-facebook-square"
                       style={{ color: "#0063d1" }}
@@ -86,7 +71,11 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com">
+                  <a
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i
                       className="fab fa-instagram-square"
                       style={{ color: "#d72f7d" }}
@@ -94,7 +83,11 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.twitter.com">
+                  <a
+                    href="https://www.twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i
                       className="fab fa-twitter-square"
                       style={{ color: " #0063d1" }}
@@ -102,7 +95,11 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com">
+                  <a
+                    href="https://www.youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i
                       className="fab fa-youtube-square"
                       style={{ color: "red" }}

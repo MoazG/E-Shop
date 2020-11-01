@@ -27,6 +27,9 @@
 .Footer_section h2 {
   margin-bottom: 10px;
 }
+.Help_center_cont {
+  flex: 1 1;
+}
 .Help_center {
   /* box-shadow: inset 1px 1px 1px 1px #a6a7a9; */
   box-shadow: inset -1px -1px 1px 1px #a6a7a9;

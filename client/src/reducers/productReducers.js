@@ -12,10 +12,17 @@ import {
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DETAILS_FAILED,
   PRODUCT_DETAILS_REQUEST,
+  PRODUCT_DETAILS_RESET,
   PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_FILTERS_FAILED,
+  PRODUCT_FILTERS_REQUEST,
+  PRODUCT_FILTERS_SUCCESS,
   PRODUCT_LIST_FAILED,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  PRODUCT_SEARCH_FAILED,
+  PRODUCT_SEARCH_REQUEST,
+  PRODUCT_SEARCH_SUCCESS,
   PRODUCT_TOP_FAIL,
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
@@ -23,6 +30,7 @@ import {
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_RESET,
   PRODUCT_UPDATE_SUCCESS,
+  PRODUCT_SEARCH_RESET,
 } from "../constants/productConstants";
 
 export const productReducers = (state = { products: [] }, action) => {
@@ -33,6 +41,36 @@ export const productReducers = (state = { products: [] }, action) => {
       const { products, pages, page } = action.payload;
       return { loading: false, products, page, pages };
     case PRODUCT_LIST_FAILED:
+      return { ...state, loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const searchProductReducers = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_SEARCH_REQUEST:
+      return { loading: true, products: [] };
+    case PRODUCT_SEARCH_SUCCESS:
+      const { products } = action.payload;
+      return { loading: false, products };
+    case PRODUCT_SEARCH_FAILED:
+      return { ...state, loading: false, error: action.payload };
+    case PRODUCT_SEARCH_RESET:
+      return { products: [] };
+    default:
+      return state;
+  }
+};
+
+export const filteredProductReducers = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_FILTERS_REQUEST:
+      return { loading: true, products: [] };
+    case PRODUCT_FILTERS_SUCCESS:
+      return { loading: false, products: action.payload };
+    case PRODUCT_FILTERS_FAILED:
       return { ...state, loading: false, error: action.payload };
 
     default:
@@ -51,7 +89,8 @@ export const productDetailsReducers = (
       return { loading: false, product: action.payload };
     case PRODUCT_DETAILS_FAILED:
       return { ...state, loading: false, error: action.payload };
-
+    case PRODUCT_DETAILS_RESET:
+      return { product: { reviews: [] } };
     default:
       return state;
   }

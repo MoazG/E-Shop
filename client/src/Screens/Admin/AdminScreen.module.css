@@ -1,0 +1,8 @@
+.Product_list_btns {
+  padding: 2rem 0 0;
+  display: flex;
+  justify-content: center;
+}
+.Product_list_btns a {
+  margin-left: 10px;
+}

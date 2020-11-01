@@ -1,0 +1,97 @@
+.Product_list_container {
+  padding: 2rem 0;
+}
+.Productlist_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.Dropdown_cont {
+  margin: 1rem 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Dropdown_cont select {
+  padding: 0.5rem;
+  width: 40%;
+}
+.Remove_btn {
+  max-width: 60%;
+  background-color: rgb(199, 11, 11);
+  border: none;
+}
+.Remove_btn:hover {
+  background-color: rgb(139, 8, 8);
+  border: none;
+}
+/* .Product_list_btns button {
+  margin-right: 1%;
+} */
+
+.Edit_btn:hover {
+  background-color: #004ba0;
+  border: 1px solid #004ba0;
+}
+.Add_cat_Modal {
+  /* background-color: #f3f3f3;
+  box-shadow: 0 0 2pt 1pt grey; */
+  border-radius: 2px;
+  height: 100%;
+}
+.Add_cat_form {
+  width: 100%;
+
+  padding: 20px;
+  /* margin: 20px auto; */
+  font-size: 16px;
+}
+
+.Add_cat_form input {
+  display: block;
+  margin: 1rem auto;
+  border: 2px solid #ebebeb;
+  border-radius: 4px;
+  width: 100%;
+  height: 38px;
+  padding: 5px;
+}
+.Invalid_feedback {
+  margin-bottom: 5px;
+  padding: 5px;
+  text-align: center;
+  color: red;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.Add_cat_form input:focus {
+  box-shadow: 0 0 2pt 1pt #0063d1;
+  border: 1px solid #fff;
+}
+.Is_invalid {
+  border: 1px solid #fff;
+  box-shadow: 0 0 2pt 1pt red;
+}
+
+.Is_invalid:focus {
+  box-shadow: 0 0 2pt 1pt red;
+}
+.Invalid_info {
+  display: none;
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  padding: 5px;
+}
+@media (max-width: 640px) {
+  .Product_table_cont {
+    width: 100%;
+    overflow-y: auto;
+  }
+  .Product_list_btns {
+    display: flex;
+    justify-content: space-between;
+  }
+}

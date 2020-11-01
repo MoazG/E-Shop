@@ -1,0 +1,18 @@
+.Productlist_cont {
+  padding: 1rem;
+}
+.Product_img_cont {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.Dropdown_cont {
+  margin: 1rem 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Dropdown_cont select {
+  padding: 0.5rem;
+  width: 30%;
+}

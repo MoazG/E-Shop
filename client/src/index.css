@@ -42,3 +42,87 @@ a {
 ul {
   list-style: none;
 }
+
+.table {
+  width: 100%;
+  table-layout: auto;
+}
+.table,
+th,
+td {
+  border: 1px solid #cdcdcd;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table th {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.9rem;
+  background-color: #f8f9f9;
+  border-bottom: 2px solid #0063d1;
+}
+.table tbody {
+  font-size: 1rem;
+}
+.table td {
+  padding: 0.9rem;
+  max-height: 100px;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  background-color: #0063d1;
+  border: 1px solid #0063d1;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 400ms ease-in-out;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #242424;
+  border: 1px solid #242424;
+}
+.pagination {
+  list-style: none;
+  display: flex;
+
+  padding: 0.5rem;
+  justify-content: space-between;
+  width: 100px;
+}
+.pagination a {
+  flex: 0 0 2rem;
+}
+.pagination li {
+  border: 1px solid #0063d1;
+  text-align: center;
+}
+
+.quickViewModal-enter {
+  transform: scale(0);
+}
+.quickViewModal-enter-active {
+  transform: scale(1);
+  transition: transform 400ms ease-in;
+}
+
+.quickViewModal-exit {
+  transform: scale(1);
+}
+.quickViewModal-exit-active {
+  transform: scale(0);
+  transition: transform 300ms ease-in;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+}
