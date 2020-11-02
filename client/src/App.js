@@ -37,11 +37,13 @@ function App() {
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/page/:pageNumber" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} />
+
           <Route
-            path="/products/categories"
+            path="/products/categories/:category?/:brand?"
             component={ProductFilterScreen}
             exact
           />
+
           <Route
             path="/products/search/:keyword"
             component={ProductFilterScreen}

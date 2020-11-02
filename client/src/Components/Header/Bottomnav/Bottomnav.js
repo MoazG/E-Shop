@@ -1,9 +1,54 @@
 import classes from "./Bottomnav.module.css";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { listCategories } from "../../../actions/categoryActions";
 
 const Bottomnav = () => {
   let categoriesRef = useRef(null);
+  const { categories } = useSelector((state) => state.categoryList);
+  const { brands } = useSelector((state) => state.brandList);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(listCategories());
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const cat = () => {
+    const list = {};
+    categories.forEach((elm, i) => {
+      list[elm.name] = [];
+    });
+
+    brands.forEach((brand) => {
+      list[brand.category.name].push(brand.name);
+    });
+    return categories.map(
+      (cat, i) =>
+        i < 5 && (
+          <li key={cat._id} className={classes.Categories_list_container_li}>
+            <Link to={`/products/categories/${cat.name}`}>
+              {cat.name}
+              <i className="fa fa-angle-right"></i>
+            </Link>
+            {list[cat.name].length !== 0 ? (
+              <ul className={classes.Categories_items_ul}>
+                {list[cat.name].map((brand, i) => (
+                  <li key={i} className={classes.Categories_items_li}>
+                    <Link to={`/products/categories/${cat.name}/${brand}`}>
+                      {brand}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </li>
+        )
+    );
+  };
 
   return (
     <div className={classes.Bottom_nav}>
@@ -22,111 +67,7 @@ const Bottomnav = () => {
               className={classes.Categories_list_container}
             >
               <ul>
-                <li className={classes.Categories_list_container_li}>
-                  <Link href="/aaaaaa">
-                    Mobiles & Tablets
-                    <i className="fa fa-angle-right"></i>
-                  </Link>
-                  <ul className={classes.Categories_items_ul}>
-                    <li className={classes.Categories_items_li}>
-                      {/* <a href="/www">Apple</a> */}
-                      <p>apple</p>
-                    </li>
-                    <li>
-                      <a href="/www">Samsung</a>
-                    </li>
-                    <li>
-                      <a href="/www">Huawei</a>
-                    </li>
-                    <li>
-                      <a href="/www">Honor</a>
-                    </li>
-                    <li>
-                      <a href="/www">Oppo</a>
-                    </li>
-                    <li>
-                      <a href="/www">Xaiomi</a>
-                    </li>
-                    <li>
-                      <a href="/www">Infinix</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="/www">
-                    Computer & Networking
-                    <i className="fa fa-angle-right"></i>
-                  </a>
-                  <ul className={classes.Categories_items_ul}>
-                    <li>
-                      <a href="/www">Laptops</a>
-                    </li>
-                    <li>
-                      <a href="/www">Hard Disks</a>
-                    </li>
-                    <li>
-                      <a href="/www">Keyboards</a>
-                    </li>
-                    <li>
-                      <a href="/www">Printers</a>
-                    </li>
-                    <li>
-                      <a href="/www">Scanners</a>
-                    </li>
-                    <li>
-                      <a href="/www">Networking</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="/www">
-                    Electronics
-                    <i className="fa fa-angle-right"></i>
-                  </a>
-                  <ul className={classes.Categories_items_ul}>
-                    <li>
-                      <a href="/www">Speakers</a>
-                    </li>
-                    <li>
-                      <a href="/www">HeadSets</a>
-                    </li>
-                    <li>
-                      <a href="/www">Watches & Clocks</a>
-                    </li>
-                    <li>
-                      <a href="/www">Virtual Reality Headsets</a>
-                    </li>
-                    <li>
-                      <a href="/www">Scanners</a>
-                    </li>
-                    <li>
-                      <a href="/www">Networking</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="/www">
-                    Video Games
-                    <i className="fa fa-angle-right"></i>
-                  </a>
-                  <ul className={classes.Categories_items_ul}>
-                    <li>
-                      <a href="/www">Sony PS4</a>
-                    </li>
-                    <li>
-                      <a href="/www">Sony PS3</a>
-                    </li>
-                    <li>
-                      <a href="/www">Xbox one</a>
-                    </li>
-                    <li>
-                      <a href="/www">Xbox 360</a>
-                    </li>
-                    <li>
-                      <a href="/www">PC Gaming</a>
-                    </li>
-                  </ul>
-                </li>
+                {cat()}
                 <li>
                   <Link to="/products/categories">Shop All Categories</Link>
                 </li>

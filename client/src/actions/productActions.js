@@ -68,14 +68,16 @@ export const listSearchProducts = (keyword = "") => async (dispatch) => {
   }
 };
 
-export const listFilteredProducts = (
+export const listFilteredProducts = ({
   filters,
   keyword = "",
   sortBy = "",
   order = "",
   limit = "9",
-  skip
-) => async (dispatch) => {
+  skip = "1",
+  catName = "",
+  brandName = "",
+}) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_FILTERS_REQUEST });
     const { data } = await axios.post(
@@ -85,6 +87,8 @@ export const listFilteredProducts = (
         sortBy,
         order,
         limit,
+        catName,
+        brandName,
       }
     );
     dispatch({ type: PRODUCT_FILTERS_SUCCESS, payload: data });

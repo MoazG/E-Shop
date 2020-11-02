@@ -151,3 +151,6 @@ export const deleteCategory = (id) => async (dispatch, getState) => {
     });
   }
 };
+export const selectCategory = (filters) => {
+  return { type: "CATEGORY_SELECTED", payload: filters };
+};

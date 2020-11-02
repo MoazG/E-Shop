@@ -1,0 +1,17 @@
+.Dd_header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 4px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+.Dd_header_title {
+  font-weight: 600;
+}
+.Dd_list {
+  padding: 0.5rem;
+}

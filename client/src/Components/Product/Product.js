@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartActions";
+import Button from "../UI/Button/Button";
 
 const Product = ({ product, width, clickHandler }) => {
   const dispatch = useDispatch();
@@ -64,12 +65,19 @@ const Product = ({ product, width, clickHandler }) => {
         {product.countInStock === 0 ? (
           <button className={classes.Btn}>Sold Out</button>
         ) : (
-          <button
+          <Button
+            cart={true}
+            color="primary"
             onClick={() => dispatch(addToCart(product._id, 1))}
-            className={`${classes.Add_cart_btn} ${classes.Btn}`}
           >
-            add to cart
-          </button>
+            Add to cart
+          </Button>
+          // <button
+          //   onClick={() => dispatch(addToCart(product._id, 1))}
+          //   className={`${classes.Add_cart_btn} ${classes.Btn}`}
+          // >
+          //   add to cart
+          // </button>
         )}
       </div>
       <div className={classes.Action_link}>

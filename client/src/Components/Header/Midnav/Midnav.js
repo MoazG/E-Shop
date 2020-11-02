@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import SearchBox from "../SearchBox/SearchBox";
@@ -8,11 +10,14 @@ import classes from "./Midnav.module.css";
 
 const Midnav = ({ showSideBar, setShowSideBar }) => {
   const [showSearch, setShowSearch] = useState(false);
+  const [sticky, setSticky] = useState(false);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
+  useScrollPosition(({ prevPos, currPos }) => {
+    currPos.y < -105 ? setSticky(true) : setSticky(false);
+  });
   return (
-    <div className={classes.Mid_nav}>
+    <div className={`${classes.Mid_nav} ${sticky && classes.Sticky}`}>
       <div className="container">
         <div className={classes.Mid_nav_container}>
           <div className={classes.Logo_list}>

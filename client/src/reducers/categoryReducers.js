@@ -90,3 +90,14 @@ export const categoryDeleteReducer = (state = {}, action) => {
       return state;
   }
 };
+export const selectedCategoryReducer = (
+  state = { brand: [], category: [] },
+  action
+) => {
+  switch (action.type) {
+    case "CATEGORY_SELECTED":
+      return { ...state, ...action.payload };
+    default:
+      return {};
+  }
+};

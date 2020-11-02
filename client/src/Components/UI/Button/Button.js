@@ -8,6 +8,7 @@ const Button = ({
   disabled,
   href,
   loading,
+  cart,
   ...others
 }) => {
   let btnColor = color ? color[0].toUpperCase() + color.substr(1) : "Default";
@@ -27,7 +28,9 @@ const Button = ({
   } else {
     return (
       <button
-        className={`${classes.Btn}  ${classes[btnColor]} 
+        className={`${classes.Btn}  ${classes[btnColor]} ${
+          cart && classes.Cart_btn
+        }
         ${disabled || loading ? classes.Disabled : ""}`}
         disabled={disabled || loading}
         style={style ? style : {}}

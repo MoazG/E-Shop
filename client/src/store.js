@@ -36,6 +36,7 @@ import {
   categoryDetailsReducer,
   categoryListReducer,
   categoryUpdateReducer,
+  selectedCategoryReducer,
 } from "./reducers/categoryReducers";
 import {
   brandCreateReducer,
@@ -79,6 +80,7 @@ const reducer = combineReducers({
   brandCreate: brandCreateReducer,
   filteredProducts: filteredProductReducers,
   searchResults: searchProductReducers,
+  selectedCategory: selectedCategoryReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

@@ -156,7 +156,7 @@ export const createProductReview = asyncHandler(async (req, res) => {
 // @route   GET /api/products/top
 // @access  Public
 export const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+  const products = await Product.find({}).sort({ rating: -1 }).limit(9);
   res.json(products);
 });
 
@@ -166,9 +166,12 @@ export const getTopProducts = asyncHandler(async (req, res) => {
 export const getFilteredProducts = asyncHandler(async (req, res) => {
   let order = req.body.order ? req.body.order : "desc";
   let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+  let catName = req.body.catName ? req.body.catName : "";
+  let brandName = req.body.brandName ? req.body.brandName : "";
   let limit = req.body.limit ? Number(req.body.limit) : 100;
   let skip = Number(req.body.skip);
   let findArgs = {};
+
   findArgs = req.query.keyword
     ? {
         name: {
@@ -178,11 +181,21 @@ export const getFilteredProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
+  if (catName) {
+    const catId = await Category.find({ name: catName });
+    findArgs.category = [catId[0]._id];
+  }
+  if (brandName) {
+    const brandId = await Brand.find({ name: brandName });
+    findArgs.brand = [brandId[0]._id];
+  }
+
   for (let key in req.body.filters) {
     if (req.body.filters[key].length > 0) {
       findArgs[key] = req.body.filters[key];
     }
   }
+  console.log(findArgs);
   const products = await Product.find(findArgs)
     .sort([[sortBy, order]])
     .skip(skip)

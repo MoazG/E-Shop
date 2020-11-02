@@ -61,14 +61,12 @@
 }
 
 /* ==================================== */
-.Products {
-  /* padding: 0.85rem; */
-}
 
 .Products_container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
+  overflow-x: auto;
 }
 
 /* media */

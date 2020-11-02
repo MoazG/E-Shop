@@ -56,8 +56,11 @@
   padding: 10px;
   position: relative;
   margin: 10px 5px;
-  font-size: 14px;
-  color: #fff;
+  font-size: 1rem;
+  color: #000;
+}
+.Categories_list_container li a {
+  color: inherit;
 }
 .Categories_list_container ul li:hover {
   cursor: pointer;
@@ -67,7 +70,7 @@
 .Categories_list_container_link {
   text-decoration: none;
   display: block;
-  color: #fff;
+  color: #000;
 }
 /* .Categories_list_container a {
   text-decoration: none;

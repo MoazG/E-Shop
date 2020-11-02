@@ -28,6 +28,7 @@ const ProductScreen = ({ match, history }) => {
   const {
     success: successProductReview,
     error: errorProductReview,
+    loading: loadingProductReview,
   } = useSelector((state) => state.productReviewCreate);
   useEffect(() => {
     if (successProductReview) {
@@ -258,6 +259,7 @@ const ProductScreen = ({ match, history }) => {
                     color="primary"
                     type="submit"
                     style={{ width: "100%" }}
+                    loading={loadingProductReview}
                   >
                     Submit Review
                   </Button>

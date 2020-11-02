@@ -32,17 +32,28 @@
 
   display: none;
 }
-/* .sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 5;
-    margin: 0;
-    height: 55px;
-    border-bottom: 2px solid #dddddd;
-    opacity: 0.96;
-  } */
+.Sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  margin: 0;
+  height: 55px;
+  border-bottom: 2px solid #dddddd;
+  opacity: 0.96;
+  background-color: #fff;
+  animation: fadeIn 500ms ease forwards;
+}
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-100%);
+    /* transform-origin: top; */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
 .Logo {
   color: #0063d1;
@@ -130,7 +141,7 @@
 .Cart:hover .Cart_items {
   transform: scaleY(1);
   visibility: visible;
-  transition: transform 400ms 300ms ease-in;
+  transition: transform 600ms 300ms ease-in;
 }
 .Visit_cart_btn {
   padding: 10px;
@@ -222,15 +233,13 @@
 
 @media (max-width: 640px) {
   .Mid_nav {
-    position: fixed;
-    z-index: 99;
     top: 0;
     left: 0;
     right: 0;
     width: 100vw;
     height: 60px;
     padding: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #dddddd;
   }
   .Drawer_toggle {
     display: block;

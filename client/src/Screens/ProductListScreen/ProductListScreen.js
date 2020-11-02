@@ -186,7 +186,7 @@ const ProductListScreen = ({ history, match }) => {
                     <td>{product.name}</td>
                     <td>${product.price}</td>
                     <td>{product.category.name}</td>
-                    <td>{product.brand.name}</td>
+                    <td>{product.brand && product.brand.name}</td>
                     <td>
                       <Link
                         to={`/admin/product/${product._id}/edit?redirect=/page/${pageNumber}`}
