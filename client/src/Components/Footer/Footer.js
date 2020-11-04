@@ -10,16 +10,16 @@ const Footer = () => {
             <h2>My Account</h2>
             <ul className={classes.Footer_section_ul}>
               <li>
-                <Link href="/profile/myinfo">My Account</Link>
+                <Link to="/profile/myinfo">My Account</Link>
               </li>
               <li>
                 <Link to="/profile/order">Order History</Link>
               </li>
               <li>
-                <Link href="profile/saved">Wish List</Link>
+                <Link to="profile/saved">Wish List</Link>
               </li>
               <li>
-                <Link href="profile/saved">Wish List</Link>
+                <Link to="profile/saved">Wish List</Link>
               </li>
             </ul>
           </div>
@@ -30,13 +30,13 @@ const Footer = () => {
                 <Link to="/a">About us</Link>
               </li>
               <li>
-                <Link href="/aa">delivery information</Link>
+                <Link to="/aa">delivery information</Link>
               </li>
               <li>
-                <Link href="/aa">returns</Link>
+                <Link to="/aa">returns</Link>
               </li>
               <li>
-                <Link href="/aa">term & condition</Link>
+                <Link to="/aa">term & condition</Link>
               </li>
             </ul>
           </div>

@@ -19,46 +19,49 @@ const Sidedrawer = ({ showSideBar, setShowSideBar }) => {
   };
 
   const cat = () => {
-    const list = {};
-    categories.forEach((elm, i) => {
-      list[elm.name] = [];
-    });
+    if (categories.length !== 0 && brands.length !== 0) {
+      const list = {};
 
-    brands.forEach((brand) => {
-      list[brand.category.name].push(brand.name);
-    });
-    return categories.map(
-      (cat, i) =>
-        i < 5 && (
-          <li
-            key={cat._id}
-            className={classes.Sidedrawer_li}
-            style={{ padding: "0.4rem 0.1rem" }}
-          >
-            <Dropdown
-              header={cat.name}
-              style={{ color: "#fff", opacity: "0.7" }}
+      categories.forEach((elm, i) => {
+        list[elm.name] = [];
+      });
+
+      brands.forEach((brand) => {
+        list[brand.category.name] && list[brand.category.name].push(brand.name);
+      });
+      return categories.map(
+        (cat, i) =>
+          i < 5 && (
+            <li
+              key={cat._id}
+              className={classes.Sidedrawer_li}
+              style={{ padding: "0.4rem 0.1rem" }}
             >
-              {list[cat.name].length !== 0
-                ? list[cat.name].map((brand, i) => (
-                    <li
-                      key={i}
-                      className={classes.Sidedrawer_li}
-                      onClick={() => setShowSideBar(false)}
-                    >
-                      <Link
-                        to={`/products/categories/${cat.name}/${brand}`}
-                        className={classes.Sidedrawer_link}
+              <Dropdown
+                header={cat.name}
+                style={{ color: "#fff", opacity: "0.7" }}
+              >
+                {list[cat.name].length !== 0
+                  ? list[cat.name].map((brand, i) => (
+                      <li
+                        key={i}
+                        className={classes.Sidedrawer_li}
+                        onClick={() => setShowSideBar(false)}
                       >
-                        {brand}
-                      </Link>
-                    </li>
-                  ))
-                : null}
-            </Dropdown>
-          </li>
-        )
-    );
+                        <Link
+                          to={`/products/categories/${cat.name}/${brand}`}
+                          className={classes.Sidedrawer_link}
+                        >
+                          {brand}
+                        </Link>
+                      </li>
+                    ))
+                  : null}
+              </Dropdown>
+            </li>
+          )
+      );
+    }
   };
   return (
     <>

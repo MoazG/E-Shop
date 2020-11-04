@@ -110,11 +110,11 @@ export const AddToFavorites = asyncHandler(async (req, res) => {
     const exist = user.favorites.findIndex((elm) => elm._id === product._id);
     if (exist !== -1) {
       res.status(404);
-      throw new Error("Product exists");
+      throw new Error(`${product.name} exists in Your Wishlist`);
     } else {
       user.favorites.push(product);
       const updatedUser = await user.save();
-      res.json(updatedUser.favorites);
+      res.json(product.name);
     }
   } else {
     res.status(404);

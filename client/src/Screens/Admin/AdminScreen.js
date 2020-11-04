@@ -12,10 +12,10 @@ const AdminScreen = () => {
   return (
     <div className={`container`}>
       <div className={classes.Product_list_btns}>
-        <Button color={"primary"} href="/admin/productlist">
+        <Button color={"primary"} href="/admin/productlist/page/1">
           Products
         </Button>
-        <Button color={"primary"} href="/admin/categorylist">
+        <Button color={"primary"} href="/admin/categorylist/page/1">
           Categories
         </Button>
         <Button color={"primary"} href="/admin/brandlist">
@@ -30,17 +30,17 @@ const AdminScreen = () => {
             component={ProductListScreen}
             exact
           />
-          <Route
+          {/* <Route
             path="/admin/productlist"
             component={ProductListScreen}
             exact
-          />
+          /> */}
           <Route
-            path="/admin/categorylist"
+            path="/admin/categorylist/page/:pageNumber"
             component={CategoryListScreen}
-            admin
+            exact
           />
-          <Route path="/admin/brandlist" component={BrandListScreen} admin />
+          <Route path="/admin/brandlist" component={BrandListScreen} exact />
         </Switch>
       </div>
     </div>

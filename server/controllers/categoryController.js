@@ -5,12 +5,19 @@ import asyncHandler from "express-async-handler";
 // @route GET api/categories
 // @access Public
 export const listCategories = asyncHandler(async (req, res) => {
-  const categories = await Category.find({});
+  const pagesize = Number(req.query.pageSize) || 10;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const count = await Category.countDocuments({});
+  const categories = await Category.find({})
+    .limit(pagesize)
+    .skip(pagesize * (page - 1));
   if (!categories) {
     res.status(404);
-    throw new Error("Product not found");
+    throw new Error("Categories not found");
   } else {
-    res.json(categories);
+    // res.json(categories);
+    res.json({ categories, page, pages: Math.ceil(count / pagesize) });
   }
 });
 

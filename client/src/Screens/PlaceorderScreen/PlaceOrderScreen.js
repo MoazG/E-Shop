@@ -115,7 +115,11 @@ const PlaceOrderScreen = ({ history }) => {
                         </td>
                         <td className={classes.Table_product_price}>
                           <p>
-                            $ {(product.price * (100 - product.discount)) / 100}
+                            ${" "}
+                            {(
+                              (product.price * (100 - product.discount)) /
+                              100
+                            ).toFixed(2)}
                           </p>
                         </td>
                         <td className={classes.Table_product_qty}>
@@ -123,9 +127,11 @@ const PlaceOrderScreen = ({ history }) => {
                         </td>
                         <td className={classes.Table_product_total}>
                           $
-                          {(product.qty *
-                            (product.price * (100 - product.discount))) /
-                            100}
+                          {(
+                            (product.qty *
+                              (product.price * (100 - product.discount))) /
+                            100
+                          ).toFixed(2)}
                         </td>
                       </tr>
                     ))}

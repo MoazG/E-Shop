@@ -1,14 +1,17 @@
 export const favoritesItemsAddReducers = (
-  state = { favorites: [] },
+  state = { favorites: "" },
   action
 ) => {
   switch (action.type) {
     case "SAVED_ITEM_ADD_REQUEST":
       return { ...state, loading: true };
     case "SAVED_ITEM_ADD_SUCCESS":
-      return { loading: false, favorites: action.payload };
+      return { success: true, loading: false, favorites: action.payload };
     case "SAVED_ITEM_ADD_FAIL":
       return { ...state, loading: false, error: action.payload };
+    case "SAVED_ITEM_ADD_RESET":
+      return { favorites: "" };
+
     default:
       return state;
   }

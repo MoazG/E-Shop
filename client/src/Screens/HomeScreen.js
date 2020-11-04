@@ -17,6 +17,7 @@ import classes from "./HomeScreen.module.css";
 import QuickViewProduct from "../Components/QuickViewProduct/QuickViewProduct";
 import Backdrop from "../Components/UI/Backdrop/Backdrop";
 import { Link } from "react-router-dom";
+import Carousel from "../Components/UI/Carousel/Carousel";
 
 const HomeScreen = ({ match }) => {
   const [showQuickView, setShowQuickView] = useState(false);
@@ -24,8 +25,9 @@ const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listTopProducts());
-    dispatch(listFilteredProducts({ sortBy: "sale" }));
+    dispatch(listTopProducts({ sortBy: "rating", limit: "4" }));
+    dispatch({ type: "PRODUCT_FILTERS_RESET" });
+    dispatch(listFilteredProducts({ sortBy: "sale", limit: "4" }));
   }, [dispatch]);
   const {
     // loading: filterLoading,
@@ -74,7 +76,7 @@ const HomeScreen = ({ match }) => {
   return (
     <>
       <div className={classes.Slider_cont}>
-        <img src="/img/slider1.png" alt="" />
+        <Carousel></Carousel>
       </div>
 
       <div className={`${classes.Shipping_container} container`}>
@@ -110,23 +112,29 @@ const HomeScreen = ({ match }) => {
 
       <div className={`${classes.Offer_section} container`}>
         <div className={classes.Banner1}>
-          <Link>
+          <Link to="/">
             <img src="/img/offer1.webp" alt="" />
           </Link>
         </div>
         <div className={classes.Banner2}>
-          <Link>
+          <Link to="/">
             <img src="./img/offer2.webp" alt="" />
           </Link>
         </div>
         <div className={classes.Banner3}>
-          <Link>
+          <Link to="/">
             <img src="./img/offer3.webp" alt="" />
           </Link>
         </div>
       </div>
+
       <div className={`container ${classes.Products}`}>
-        <h2>Hot Deals</h2>
+        <div className={classes.Title_cont}>
+          <h2>Hot Deals</h2>{" "}
+          <Link to="/products/categories?sortBy=sale">
+            See More <i className="fas fa-angle-right"></i>
+          </Link>
+        </div>
         {loading ? (
           loadingState()
         ) : error ? (
@@ -150,7 +158,12 @@ const HomeScreen = ({ match }) => {
         className={`container ${classes.Products}`}
         style={{ marginTop: "1rem" }}
       >
-        <h2>Top Products</h2>
+        <div className={classes.Title_cont}>
+          <h2>Top Products</h2>{" "}
+          <Link to="/products/categories?sortBy=rating">
+            See More <i className="fas fa-angle-right"></i>
+          </Link>
+        </div>
         {loading ? (
           loadingState()
         ) : error ? (

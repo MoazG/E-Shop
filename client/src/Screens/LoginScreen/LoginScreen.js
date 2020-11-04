@@ -8,6 +8,7 @@ import classes from "./LoginScreen.module.css";
 import Loader from "../../Components/Loader";
 import { validateForm } from "./loginValidity";
 import Button from "../../Components/UI/Button/Button";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -48,6 +49,9 @@ const LoginScreen = ({ location, history }) => {
           <Link to="/">Home</Link> / Sign in
         </div>
       </div>
+      {isInvalid.info && (
+        <Alert sevirity="error">Invalid Email or Password</Alert>
+      )}
       <div className={`${classes.Form_container} container`}>
         {/* <h1 className={classes.Page_title}>Sign in</h1> */}
         {loading && <Loader></Loader>}
@@ -99,13 +103,13 @@ const LoginScreen = ({ location, history }) => {
               <p>Please entaer a valid password</p>
             </div>
           </div>
-          <div
+          {/* <div
             className={`${classes.Invalid_info} ${
               isInvalid.info ? classes.Info_active : null
             }`}
           >
             <p>Invalid Email or Password</p>
-          </div>
+          </div> */}
           <Button color="primary" style={{ width: "100%" }}>
             Sign in
           </Button>

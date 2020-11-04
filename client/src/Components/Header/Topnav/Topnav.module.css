@@ -42,12 +42,13 @@
 .Top_nav_ul li a:hover {
   color: #0063d1;
 }
-.Top_nav .my_account_setting {
+.Top_nav .My_account_setting {
   position: relative;
+
+  text-align: right;
+  padding-right: 0.6rem;
 }
-.Top_nav_li_right {
-  display: flex;
-}
+
 .My_account_modal,
 .Admin_modal_ul {
   list-style: none;

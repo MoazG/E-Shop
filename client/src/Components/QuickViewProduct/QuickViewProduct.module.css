@@ -16,8 +16,12 @@
 .Product_info_title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08);
+}
+.Product_info_title > h2 {
+  border-bottom: none;
 }
 .Close_btn {
   width: 20px;
@@ -88,7 +92,7 @@
 .Product_info_action {
   margin-left: 2%;
   flex: 0 1 20%;
-  height: 160px;
+  height: fit-content;
   border: 1px solid #00000020;
 }
 .Product_info_action a {
@@ -99,7 +103,7 @@
 .Next_img_btn,
 .Prev_img_btn {
   display: inline-block;
-  background-color: #c4bbbb;
+  background-color: #9e9b9b;
   border: none;
   width: 9%;
   height: 15%;

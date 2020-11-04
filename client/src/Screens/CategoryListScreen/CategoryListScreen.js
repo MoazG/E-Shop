@@ -16,6 +16,7 @@ import {
   updateCategory,
 } from "../../actions/categoryActions";
 import { CATEGORY_LIST_RESET } from "../../constants/categoryConstants";
+import Pagination from "../../Components/UI/Pagination/Pagination";
 
 const CategoryListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
@@ -29,7 +30,7 @@ const CategoryListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
 
   const categoriesList = useSelector((state) => state.categoryList);
-  const { categories } = categoriesList;
+  const { categories, page, pages } = categoriesList;
 
   const categoryCreate = useSelector((state) => state.categoryCreate);
   const { success: successCreate } = categoryCreate;
@@ -72,7 +73,7 @@ const CategoryListScreen = ({ history, match }) => {
       setShowEditModal(false);
       setShowModal(false);
     }
-    dispatch(listCategories());
+    dispatch(listCategories(pageNumber));
     if (category.name) {
       setCategoryDetail(category.name);
       setCategoryId(category._id);
@@ -243,7 +244,7 @@ const CategoryListScreen = ({ history, match }) => {
             </table>
           </div>
         )}
-        {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
+        <Pagination pages={pages} page={page} route={"categorylist"} />
       </div>
     </>
   );

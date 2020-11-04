@@ -24,8 +24,17 @@ export const cartReducer = (
           ],
         };
       } else {
-        return { ...state, cartItems: [...state.cartItems, item] };
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+          success: true,
+          productName: item.name,
+        };
       }
+    case "CART_ADD_ITEM_FAIL":
+      return { ...state, error: action.payload };
+    case "CART_ADD_ITEM_RESET":
+      return { ...state, success: false, productName: "" };
     case CART_REMOVE_ITEM:
       return {
         ...state,

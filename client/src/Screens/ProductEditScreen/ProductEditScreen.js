@@ -132,7 +132,7 @@ const ProductEditScreen = ({ match, history, location }) => {
 
   return (
     <div className={` container ${css.Productlist_cont}`}>
-      <Button href="/admin/productlist">Go Back</Button>
+      <Button href={`/admin/productlist${redirect}`}>Go Back</Button>
       <div className={classes.Form_container}>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}

@@ -1,0 +1,22 @@
+.Pagination_ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Pagination_li {
+  margin: 0.7rem;
+}
+.Pagination_link {
+  display: inline-block;
+  border: 1px solid #0063d1;
+  color: #000;
+  width: 2rem;
+  padding: 0.4rem;
+  text-align: center;
+}
+
+.Active {
+  background-color: #0063d1;
+  border: 1px solid #0063d1;
+  color: #fff;
+}

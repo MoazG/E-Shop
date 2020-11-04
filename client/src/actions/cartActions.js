@@ -8,21 +8,31 @@ import {
 import { logout } from "./userActions";
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`);
-  dispatch({
-    type: CART_ADD_ITEM,
-    payload: {
-      product: data._id,
-      name: data.name,
-      image: data.image,
-      price: data.price,
-      discount: data.discount,
-      countInStock: data.countInStock,
-      qty,
-    },
-  });
+  try {
+    const { data } = await axios.get(`/api/products/${id}`);
+    dispatch({
+      type: CART_ADD_ITEM,
+      payload: {
+        product: data._id,
+        name: data.name,
+        image: data.image,
+        price: data.price,
+        discount: data.discount,
+        countInStock: data.countInStock,
+        qty,
+      },
+    });
 
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(getState().cart.cartItems)
+    );
+  } catch (error) {
+    dispatch({
+      type: "CART_ADD_ITEM_FAIL",
+      payload: "Failed to Add product to cart",
+    });
+  }
 };
 export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({
@@ -49,7 +59,6 @@ export const savePaymentMethod = (data) => (dispatch) => {
 };
 
 export const addToSaved = (id) => async (dispatch, getState) => {
-  console.log("id", id);
   const {
     userLogin: { userInfo },
   } = getState();
@@ -62,7 +71,6 @@ export const addToSaved = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: "SAVED_ITEM_ADD_REQUEST" });
     const { data } = await axios.get(`/api/products/${id}`);
-    console.log(data.name);
     const savedObject = {
       _id: data._id,
       name: data.name,

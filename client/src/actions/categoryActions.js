@@ -16,14 +16,18 @@ import {
   CATEGORY_UPDATE_REQUEST,
   CATEGORY_UPDATE_SUCCESS,
 } from "../constants/categoryConstants";
-import { listBrands } from "./brandActions";
+// import { listBrands } from "./brandActions";
 import { logout } from "./userActions";
 
-export const listCategories = () => async (dispatch) => {
+export const listCategories = (pageNumber = "", pageSize = "") => async (
+  dispatch
+) => {
   dispatch({ type: CATEGORY_LIST_REQUEST });
   try {
-    const { data } = await axios.get("/api/categories");
-    dispatch(listBrands());
+    const { data } = await axios.get(
+      `/api/categories?pageNumber=${pageNumber}&&pageSize=${pageSize}`
+    );
+    // dispatch(listBrands());
     dispatch({ type: CATEGORY_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

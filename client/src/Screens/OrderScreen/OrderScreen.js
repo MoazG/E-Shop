@@ -4,7 +4,6 @@ import { PayPalButton } from "react-paypal-button-v2";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../Components/Message";
 
 import {
   getOrderDetails,
@@ -18,6 +17,7 @@ import {
 import Loader from "../../Components/Loader";
 import classes from "../PlaceorderScreen/PlaceOrderScreen.module.css";
 import { CART_RESET_ITEMS } from "../../constants/cartConstants";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -98,7 +98,7 @@ const OrderScreen = ({ match, history }) => {
   return loading ? (
     <Loader />
   ) : error ? (
-    <Message variant="danger">{error}</Message>
+    <Alert severity="error">{error}</Alert>
   ) : (
     <div className="container">
       <div className={classes.Placeorder_cont} style={{ paddingTop: "2rem" }}>
@@ -123,11 +123,9 @@ const OrderScreen = ({ match, history }) => {
               {order.shippingAddress.country}
             </p>
             {order.isDelivered ? (
-              <Message variant="success">
-                Delivered on {order.deliveredAt}
-              </Message>
+              <Alert sevirity="success">Delivered on {order.deliveredAt}</Alert>
             ) : (
-              <Message variant="danger">Not Delivered</Message>
+              <Alert variant="warning">Not Delivered</Alert>
             )}
           </div>
           <div className={classes.Payment_method}>
@@ -136,16 +134,16 @@ const OrderScreen = ({ match, history }) => {
               {order.paymentMethod}
             </p>
             {order.isPaid ? (
-              <Message variant="success">
+              <Alert sevirity="success">
                 <strong>Paid on</strong> {order.paidAt}
-              </Message>
+              </Alert>
             ) : (
-              <Message variant="danger">Not Paid</Message>
+              <Alert variant="warning">Not Paid</Alert>
             )}
           </div>
           <div className={classes.List_order_items}>
             {order.orderItems.length === 0 ? (
-              <Message>Your cart is empty </Message>
+              <Alert sevirity="error">Your cart is empty </Alert>
             ) : (
               <div className={classes.Cart_table_cont}>
                 <h4>Order products</h4>
@@ -179,7 +177,11 @@ const OrderScreen = ({ match, history }) => {
                         </td>
                         <td className={classes.Table_product_price}>
                           <p>
-                            $ {(product.price * (100 - product.discount)) / 100}
+                            ${" "}
+                            {(
+                              (product.price * (100 - product.discount)) /
+                              100
+                            ).toFixed(2)}
                           </p>
                         </td>
                         <td className={classes.Table_product_qty}>
@@ -187,9 +189,11 @@ const OrderScreen = ({ match, history }) => {
                         </td>
                         <td className={classes.Table_product_total}>
                           ${" "}
-                          {(product.qty *
-                            (product.price * (100 - product.discount))) /
-                            100}
+                          {(
+                            (product.qty *
+                              (product.price * (100 - product.discount))) /
+                            100
+                          ).toFixed(2)}
                         </td>
                       </tr>
                     ))}

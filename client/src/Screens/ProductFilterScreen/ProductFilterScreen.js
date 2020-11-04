@@ -20,8 +20,9 @@ const ProductFilterScreen = ({ match, location }) => {
   const keyword = match.params.keyword;
   const categoryParams = match.params.category ? match.params.category : "";
   const brandParams = match.params.brand ? match.params.brand : "";
-  // const selectedCategory = useSelector((state) => state.selectedCategory);
-  // const { brand, category } = selectedCategory;
+  const sortParams = location.search
+    ? { sorttBy: location.search.split("=")[1] }
+    : {};
 
   const [showQuickView, setShowQuickView] = useState(false);
   const [showFilterMobile, setShowFilterMobile] = useState(false);
@@ -29,11 +30,10 @@ const ProductFilterScreen = ({ match, location }) => {
   const [myFilter, setMyFilter] = useState({
     filters: { category: [], brand: [] },
   });
-  const [sort, setSort] = useState({});
+  const [sort, setSort] = useState(sortParams);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("count");
     dispatch({ type: "PRODUCT_FILTERS_RESET" });
     dispatch(
       listFilteredProducts({
@@ -70,7 +70,6 @@ const ProductFilterScreen = ({ match, location }) => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && page < pages) {
-          console.log("Observed");
           dispatch(
             listFilteredProducts({
               filters: myFilter.filters,
@@ -125,7 +124,8 @@ const ProductFilterScreen = ({ match, location }) => {
       case "p_low":
         setSort({ sortBy: "price", order: "asc" });
         break;
-      case "featured":
+      case "New":
+        setSort({ sortBy: "createdAt" });
         break;
       case "top_rate":
         setSort({ sortBy: "rating" });
@@ -249,7 +249,7 @@ const ProductFilterScreen = ({ match, location }) => {
                 id="SortBy"
                 onChange={(e) => sortByHandler(e.target.value)}
               >
-                <option value="featured">Featured</option>
+                <option value="featured">New</option>
                 <option value="top_rate">Top Rated</option>
                 <option value="p_height">Price hight to low</option>
                 <option value="p_low">Price low to height</option>

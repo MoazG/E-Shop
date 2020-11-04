@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../Components/Message";
 import Loader from "../../Components/Loader";
-import Paginate from "../../Components/Paginate";
 import {
   listProducts,
   deleteProduct,
@@ -12,6 +11,7 @@ import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 import classes from "./ProductListScreen.module.css";
 import { Link } from "react-router-dom";
 import Button from "../../Components/UI/Button/Button";
+import Pagination from "../../Components/UI/Pagination/Pagination";
 // import Modal from "../../Components/UI/Modal/Modal";
 
 const ProductListScreen = ({ history, match }) => {
@@ -41,8 +41,6 @@ const ProductListScreen = ({ history, match }) => {
     success: successCreate,
     product: createdProduct,
   } = productCreate;
-  // const categoriesList = useSelector((state) => state.categoryList);
-  // const { categories } = categoriesList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -55,9 +53,7 @@ const ProductListScreen = ({ history, match }) => {
     }
 
     if (successCreate) {
-      history.push(
-        `/admin/product/${createdProduct._id}/edit?redirectPage=${pageNumber}`
-      );
+      history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
       dispatch(listProducts("", pageNumber));
     }
@@ -81,72 +77,8 @@ const ProductListScreen = ({ history, match }) => {
     dispatch(createProduct());
   };
 
-  // const addCategoryHandler = async () => {
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${userInfo.token}`,
-  //     },
-  //   };
-  //   try {
-  //     const { data } = await Axios.post(
-  //       "/api/categories",
-  //       { name: category },
-  //       config
-  //     );
-  //     setShowModal(false);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const addBrandHandler = async () => {
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${userInfo.token}`,
-  //     },
-  //   };
-  //   try {
-  //     const { data } = await Axios.post(
-  //       "/api/brands",
-  //       { name: category },
-  //       config
-  //     );
-  //     setShowModal(false);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   return (
     <>
-      {/* <Modal
-        showModal={showModal}
-        showHandler={setShowModal}
-        title={"Add new category"}
-        confirmHandler={addCategoryHandler}
-      >
-        <div className={classes.Add_cat_Modal}>
-          <form
-            id="category_form"
-            className={classes.Add_cat_form}
-            // onSubmit={addCategoryHandler}
-          >
-            <div className={classes.Form_group}>
-              <label htmlFor="add-category">Add Category</label>
-              <input
-                type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
-              <div className={classes.Invalid_feedback}>
-                <p>Please entaer a valid Category Name</p>
-              </div>
-            </div>
-          </form>
-        </div>
-      </Modal> */}
       <div className={`container ${classes.Product_list_container}`}>
         <div className={classes.Productlist_title}>
           <h1>Products</h1>
@@ -189,7 +121,7 @@ const ProductListScreen = ({ history, match }) => {
                     <td>{product.brand && product.brand.name}</td>
                     <td>
                       <Link
-                        to={`/admin/product/${product._id}/edit?redirect=/page/${pageNumber}`}
+                        to={`/admin/product/${product._id}/edit?redirect=/page/${page}`}
                       >
                         <button className={`btn ${classes.Edit_btn}`}>
                           <i className="fas fa-edit"></i>
@@ -210,7 +142,7 @@ const ProductListScreen = ({ history, match }) => {
             </table>
           </div>
         )}
-        <Paginate pages={pages} page={page} isAdmin={true} />
+        <Pagination pages={pages} page={page} route="productlist" />
       </div>
     </>
   );
