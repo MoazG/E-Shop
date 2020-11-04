@@ -9,10 +9,11 @@ const Modal = ({
   showHandler,
   confirmHandler,
   loading,
+  zIndex,
 }) => {
   return (
     <>
-      <Backdrop show={showModal} showHandler={showHandler} />
+      <Backdrop show={showModal} showHandler={showHandler} zIndex={zIndex} />
       <div
         className={`${classes.Modal} ${
           showModal ? classes.Show : classes.Hide

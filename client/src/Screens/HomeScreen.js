@@ -5,7 +5,10 @@ import { CSSTransition } from "react-transition-group";
 import Product from "../Components/Product/Product";
 
 // import { listProducts,  } from "../actions/productActions";
-import { listTopProducts } from "../actions/productActions";
+import {
+  listFilteredProducts,
+  listTopProducts,
+} from "../actions/productActions";
 
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
@@ -22,8 +25,13 @@ const HomeScreen = ({ match }) => {
 
   useEffect(() => {
     dispatch(listTopProducts());
+    dispatch(listFilteredProducts({ sortBy: "sale" }));
   }, [dispatch]);
-
+  const {
+    // loading: filterLoading,
+    products: filteredProducts,
+    // error: filterError,
+  } = useSelector((state) => state.filteredProducts);
   const productTopRated = useSelector((state) => state.productTopRated);
   const { loading, error, products } = productTopRated;
 
@@ -118,6 +126,30 @@ const HomeScreen = ({ match }) => {
         </div>
       </div>
       <div className={`container ${classes.Products}`}>
+        <h2>Hot Deals</h2>
+        {loading ? (
+          loadingState()
+        ) : error ? (
+          errorState()
+        ) : (
+          <>
+            {quicklViewHandler(productId)}
+            <div className={classes.Products_container}>
+              {filteredProducts.map((product) => (
+                <Product
+                  key={product._id}
+                  product={product}
+                  clickHandler={onClickQuickViewHandler}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <div
+        className={`container ${classes.Products}`}
+        style={{ marginTop: "1rem" }}
+      >
         <h2>Top Products</h2>
         {loading ? (
           loadingState()

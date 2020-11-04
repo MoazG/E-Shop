@@ -74,7 +74,7 @@ export const listFilteredProducts = ({
   sortBy = "",
   order = "",
   limit = "9",
-  skip = "1",
+  page = "",
   catName = "",
   brandName = "",
 }) => async (dispatch) => {
@@ -89,8 +89,10 @@ export const listFilteredProducts = ({
         limit,
         catName,
         brandName,
+        page,
       }
     );
+
     dispatch({ type: PRODUCT_FILTERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

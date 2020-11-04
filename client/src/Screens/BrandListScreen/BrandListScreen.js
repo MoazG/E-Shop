@@ -120,6 +120,7 @@ const BrandListScreen = ({ history, match }) => {
         showHandler={setShowBrandModal}
         title={"Add new Brand"}
         confirmHandler={addBrandHandler}
+        zIndex="501"
       >
         <div className={classes.Add_cat_Modal}>
           <form

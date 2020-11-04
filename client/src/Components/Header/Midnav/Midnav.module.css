@@ -286,10 +286,7 @@
     line-height: 1rem;
     font-size: 0.6rem;
   }
-  /* .Cart:hover .Cart_items {
-    transform: none;
-
-    visibility: hidden;
-    transition: none;
-  } */
+  .Cart .Cart_items {
+    display: none;
+  }
 }

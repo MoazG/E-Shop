@@ -17,6 +17,7 @@ import {
 } from "../../constants/orderConstants";
 import Loader from "../../Components/Loader";
 import classes from "../PlaceorderScreen/PlaceOrderScreen.module.css";
+import { CART_RESET_ITEMS } from "../../constants/cartConstants";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -44,7 +45,11 @@ const OrderScreen = ({ match, history }) => {
     };
 
     order.itemsPrice = addDecimals(
-      order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+      order.orderItems.reduce(
+        (acc, item) =>
+          acc + ((item.price * (100 - item.discount)) / 100) * item.qty,
+        0
+      )
     );
   }
 
@@ -67,8 +72,10 @@ const OrderScreen = ({ match, history }) => {
     };
 
     if (!order || successPay || successDeliver || order._id !== orderId) {
+      dispatch({ type: "ORDER_CREATE_RESET" });
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
+      dispatch({ type: CART_RESET_ITEMS });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -171,13 +178,18 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </td>
                         <td className={classes.Table_product_price}>
-                          <p>$ {product.price}</p>
+                          <p>
+                            $ {(product.price * (100 - product.discount)) / 100}
+                          </p>
                         </td>
                         <td className={classes.Table_product_qty}>
                           <p>{product.qty}</p>
                         </td>
                         <td className={classes.Table_product_total}>
-                          ${product.qty * product.price}
+                          ${" "}
+                          {(product.qty *
+                            (product.price * (100 - product.discount))) /
+                            100}
                         </td>
                       </tr>
                     ))}

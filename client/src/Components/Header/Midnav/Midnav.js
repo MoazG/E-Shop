@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import SearchBox from "../SearchBox/SearchBox";
 import classes from "./Midnav.module.css";
 
 const Midnav = ({ showSideBar, setShowSideBar }) => {
   const [showSearch, setShowSearch] = useState(false);
+  const history = useHistory();
   const [sticky, setSticky] = useState(false);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -40,9 +41,9 @@ const Midnav = ({ showSideBar, setShowSideBar }) => {
           <SearchBox showSearch={showSearch} />
           <div className={classes.Cart_container}>
             <div className={classes.Wishing_list}>
-              <button className={classes.Nav_btn}>
+              <Link to="/profile/saved" className={classes.Nav_btn}>
                 <i className="far fa-heart"></i>
-              </button>
+              </Link>
             </div>
             <div className={classes.Search_icon_cont}>
               <button
@@ -59,7 +60,8 @@ const Midnav = ({ showSideBar, setShowSideBar }) => {
               <div className={classes.Cart_icons}>
                 <button
                   className={classes.Nav_btn}
-                  style={{ marginRight: "3px" }}
+                  style={{ marginRight: "3px", cursor: "pointer" }}
+                  onClick={() => history.push("/cart")}
                 >
                   <i className="fas fa-shopping-bag"></i>
                 </button>

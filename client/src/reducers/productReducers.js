@@ -67,12 +67,18 @@ export const searchProductReducers = (state = { products: [] }, action) => {
 export const filteredProductReducers = (state = { products: [] }, action) => {
   switch (action.type) {
     case PRODUCT_FILTERS_REQUEST:
-      return { loading: true, products: [] };
+      return { ...state, loading: true };
     case PRODUCT_FILTERS_SUCCESS:
-      return { loading: false, products: action.payload };
+      return {
+        loading: false,
+        products: [...state.products, ...action.payload.products],
+        page: action.payload.page,
+        pages: action.payload.pages,
+      };
     case PRODUCT_FILTERS_FAILED:
       return { ...state, loading: false, error: action.payload };
-
+    case "PRODUCT_FILTERS_RESET":
+      return { products: [] };
     default:
       return state;
   }

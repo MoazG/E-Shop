@@ -6,11 +6,17 @@ import { login } from "../../actions/userActions";
 import classes from "./LoginScreen.module.css";
 // import FormContainer from "../Components/FormContainer";
 import Loader from "../../Components/Loader";
-import Message from "../../Components/Message";
+import { validateForm } from "./loginValidity";
+import Button from "../../Components/UI/Button/Button";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isInvalid, setIsInvalid] = useState({
+    email: false,
+    password: false,
+    info: false,
+  });
   const redirect = location.search ? location.search.split("=")[1] : "/";
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -20,57 +26,101 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, redirect, userInfo]);
+    if (error) {
+      setIsInvalid({ ...setIsInvalid, info: true });
+    }
+  }, [history, redirect, userInfo, error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    let valid = validateForm(email, password, isInvalid, setIsInvalid);
+
+    valid && dispatch(login(email, password));
+  };
+  const changeStatus = (input) => {
+    setIsInvalid({ ...isInvalid, [input]: false });
   };
 
   return (
-    <div className={`${classes.Form_container} container`}>
-      <h1 className={classes.Page_title}>Sign in</h1>
-      {error && <Message variant="danger">{error}</Message>}
-      {loading && <Loader></Loader>}
-      <form className={classes.Login_form} onSubmit={submitHandler}>
-        <div className={classes.Form_group}>
-          <label htmlFor="">Email</label>
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className={classes.Invalid_feedback}>
-            <p>Please entaer a valid email</p>
+    <>
+      <div className="bread_crumbs_section">
+        <div className="container">
+          <Link to="/">Home</Link> / Sign in
+        </div>
+      </div>
+      <div className={`${classes.Form_container} container`}>
+        {/* <h1 className={classes.Page_title}>Sign in</h1> */}
+        {loading && <Loader></Loader>}
+        <form
+          className={classes.Login_form}
+          onSubmit={submitHandler}
+          noValidate
+        >
+          <div className={classes.Form_group}>
+            <label htmlFor="">Email</label>
+            <input
+              type="email"
+              name="user_email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                changeStatus("email");
+              }}
+              className={isInvalid.email ? classes.Is_invalid : null}
+            />
+            <div
+              className={`${classes.Invalid_feedback} ${
+                isInvalid.email ? classes.Active : null
+              }`}
+            >
+              <p>Please entaer a valid email</p>
+            </div>
           </div>
-        </div>
-        <div className={classes.Form_group}>
-          <label htmlFor="login_password">Password</label>
-          <input
-            type="password"
-            name="user_password"
-            placeholder="Enter your pasword"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div className={classes.Invalid_feedback}>
-            <p>Please entaer a valid password</p>
+
+          <div className={classes.Form_group}>
+            <label htmlFor="login_password">Password</label>
+            <input
+              type="password"
+              name="user_password"
+              placeholder="Enter your pasword"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                changeStatus("password");
+              }}
+              className={isInvalid.password ? classes.Is_invalid : null}
+            />
+            <div
+              className={`${classes.Invalid_feedback} ${
+                isInvalid.password ? classes.Active : null
+              }`}
+            >
+              <p>Please entaer a valid password</p>
+            </div>
           </div>
-        </div>
-        <div className={classes.Invalid_info}>
-          <p>Email or Password is incorrect</p>
-        </div>
-        <input type="submit" value="Sign in" />
-        <div className={classes.Form_option}>
-          New Customer{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Register
-          </Link>
-        </div>
-      </form>
-    </div>
+          <div
+            className={`${classes.Invalid_info} ${
+              isInvalid.info ? classes.Info_active : null
+            }`}
+          >
+            <p>Invalid Email or Password</p>
+          </div>
+          <Button color="primary" style={{ width: "100%" }}>
+            Sign in
+          </Button>
+          <div className={classes.Form_option}>
+            New Customer ?{" "}
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              style={{ color: "#0063D1" }}
+            >
+              Create new account
+            </Link>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

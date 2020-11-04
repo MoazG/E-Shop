@@ -6,6 +6,8 @@
   min-height: 600px;
   left: 10%;
   top: 10px;
+  bottom: 10px;
+  overflow-y: auto;
   background: #fff;
   opacity: 1;
   border-radius: 4px;

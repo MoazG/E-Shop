@@ -20,8 +20,13 @@ const PlaceOrderScreen = ({ history }) => {
   };
 
   cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    cart.cartItems.reduce(
+      (acc, item) =>
+        acc + ((item.price * (100 - item.discount)) / 100) * item.qty,
+      0
+    )
   );
+
   cart.shippingPrice = addDecimals(
     cart.itemsPrice > 100 ? 0 : cart.itemsPrice * 0.1
   );
@@ -47,7 +52,7 @@ const PlaceOrderScreen = ({ history }) => {
     let cartItems = cart.cartItems.map((product) => {
       return { ...product, image: product.image[0] };
     });
-
+    console.log("cartItemsInPlaceOrder", cartItems);
     dispatch(
       createOrder({
         orderItems: cartItems,
@@ -60,6 +65,7 @@ const PlaceOrderScreen = ({ history }) => {
       })
     );
   };
+  console.log("cart", cart);
 
   return (
     <div className="container">
@@ -108,13 +114,18 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </td>
                         <td className={classes.Table_product_price}>
-                          <p>$ {product.price}</p>
+                          <p>
+                            $ {(product.price * (100 - product.discount)) / 100}
+                          </p>
                         </td>
                         <td className={classes.Table_product_qty}>
                           <p>{product.qty}</p>
                         </td>
                         <td className={classes.Table_product_total}>
-                          ${product.qty * product.price}
+                          $
+                          {(product.qty *
+                            (product.price * (100 - product.discount))) /
+                            100}
                         </td>
                       </tr>
                     ))}

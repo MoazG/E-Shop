@@ -35,7 +35,7 @@ export const userLoginReducer = (state = {}, action) => {
     case USER_LOGIN_FAILED:
       return { ...state, loading: false, error: action.payload };
     case USER_LOGOUT:
-      return {};
+      return { favorites: [] };
     default:
       return state;
   }
@@ -54,7 +54,10 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 };
 
-export const userDetailsReducer = (state = { user: {} }, action) => {
+export const userDetailsReducer = (
+  state = { user: { favorites: [] } },
+  action
+) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
       return { ...state, loading: true };
@@ -63,7 +66,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
     case USER_DETAILS_FAILED:
       return { ...state, loading: false, error: action.payload };
     case USER_DETAILS_RESET:
-      return { user: {} };
+      return { user: { favorites: [] } };
     default:
       return state;
   }

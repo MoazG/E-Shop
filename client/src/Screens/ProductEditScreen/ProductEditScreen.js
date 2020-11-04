@@ -32,6 +32,8 @@ const ProductEditScreen = ({ match, history, location }) => {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
+  const [sale, setSale] = useState(false);
+  const [discount, setDiscount] = useState(0);
   // eslint-disable-next-line
   const [uploading, setUploading] = useState(false);
 
@@ -122,6 +124,8 @@ const ProductEditScreen = ({ match, history, location }) => {
         category,
         description,
         countInStock,
+        sale,
+        discount,
       })
     );
   };
@@ -195,6 +199,34 @@ const ProductEditScreen = ({ match, history, location }) => {
                   </option>
                 ))}
               </select>
+            </div>
+            <div
+              className={classes.Form_group}
+              style={{ marginBottom: "1rem" }}
+            >
+              <label htmlFor="sale">Sale</label>
+              <input
+                type="checkbox"
+                name="sale"
+                id="sale"
+                checked={sale}
+                onChange={(e) => setSale(e.target.checked)}
+              />
+            </div>
+
+            <div className={classes.Form_group}>
+              <label htmlFor="Sale_rate">Discount Percentage</label>
+              <input
+                disabled={!sale}
+                type="number"
+                name="Sale_rate"
+                placeholder="Enter Discount Percentage"
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
+              />
+              <div className={classes.Invalid_feedback}>
+                <p>Please entaer a valid Email</p>
+              </div>
             </div>
 
             <div className={`${classes.Form_group} ${css.Dropdown_cont}`}>

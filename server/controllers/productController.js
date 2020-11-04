@@ -93,6 +93,8 @@ export const updateProduct = asyncHandler(async (req, res) => {
     brand,
     category,
     countInStock,
+    sale,
+    discount,
   } = req.body;
 
   const product = await Product.findById(req.params.id);
@@ -103,6 +105,8 @@ export const updateProduct = asyncHandler(async (req, res) => {
     product.description = description;
     product.image = image;
     product.brand = brand;
+    product.sale = sale;
+    product.discount = discount;
     product.category = category;
     product.countInStock = countInStock;
 
@@ -168,8 +172,10 @@ export const getFilteredProducts = asyncHandler(async (req, res) => {
   let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
   let catName = req.body.catName ? req.body.catName : "";
   let brandName = req.body.brandName ? req.body.brandName : "";
-  let limit = req.body.limit ? Number(req.body.limit) : 100;
-  let skip = Number(req.body.skip);
+  let limit = req.body.limit ? Number(req.body.limit) : 10;
+
+  let page = Number(req.body.page) || 1;
+
   let findArgs = {};
 
   findArgs = req.query.keyword
@@ -195,13 +201,14 @@ export const getFilteredProducts = asyncHandler(async (req, res) => {
       findArgs[key] = req.body.filters[key];
     }
   }
-  console.log(findArgs);
+  const count = await Product.countDocuments(findArgs);
+  console.log(page);
   const products = await Product.find(findArgs)
     .sort([[sortBy, order]])
-    .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .skip(limit * (page - 1));
   if (products) {
-    res.status(201).json(products);
+    res.status(201).json({ products, page, pages: Math.ceil(count / limit) });
   } else {
     res.status(404);
     throw new Error("Product not found");

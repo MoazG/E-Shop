@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
+import Product from "../models/productModel.js";
 
 // @desc : create new order
 // @routes : POST api/order
@@ -19,7 +20,6 @@ export const addOrderItems = asyncHandler(async (req, res) => {
     throw new Error("No order items");
     return;
   }
-
   const order = new Order({
     orderItems,
     user: req.user._id,
@@ -58,6 +58,24 @@ export const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
+    const { orderItems } = order;
+    const productsQty = {};
+    const productsId = orderItems.map((item) => {
+      productsQty[item.product] = item.qty;
+      return item.product;
+    });
+
+    const products = await Product.find().where("_id").in(productsId).exec();
+    products.forEach((product) => {
+      const qty = productsQty[product._id];
+      product.countInStock -= qty;
+    });
+
+    await Promise.all(
+      products.map(async (product) => {
+        const updatedProduct = await product.save();
+      })
+    );
     order.isPaid = true;
     order.paidAt = Date.now();
     order.paymentResult = {

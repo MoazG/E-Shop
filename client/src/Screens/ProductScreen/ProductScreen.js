@@ -150,8 +150,24 @@ const ProductScreen = ({ match, history }) => {
             </div>
             <div className={classes.Product_info_text}>
               <h2>{product.name}</h2>
+              {product.sale && (
+                <div className={classes.Product_info_rating}>
+                  <strong>Sale : </strong>
+                  {product.discount} %
+                </div>
+              )}
               <div className={classes.Product_info_price}>
-                <strong>Price : </strong> $50,00
+                <strong>Price : </strong>
+                {product.sale ? (
+                  <>
+                    <span className={classes.Discount}>${product.price}</span>$
+                    {((product.price * (100 - product.discount)) / 100).toFixed(
+                      2
+                    )}
+                  </>
+                ) : (
+                  "$" + product.price
+                )}
               </div>
               <div className={classes.Product_info_rating}>
                 <Rating

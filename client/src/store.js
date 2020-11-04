@@ -45,6 +45,10 @@ import {
   brandListReducer,
   brandUpdateReducer,
 } from "./reducers/brandReducers";
+import {
+  favoritesItemsAddReducers,
+  favoritesItemsDeleteReducers,
+} from "./reducers/favoritesReducers";
 
 const reducer = combineReducers({
   productList: productReducers,
@@ -81,6 +85,8 @@ const reducer = combineReducers({
   filteredProducts: filteredProductReducers,
   searchResults: searchProductReducers,
   selectedCategory: selectedCategoryReducer,
+  addFavoriteItem: favoritesItemsAddReducers,
+  deleteFavoriteItem: favoritesItemsDeleteReducers,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

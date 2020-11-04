@@ -139,6 +139,15 @@ td {
   transform-origin: top;
   transition: transform 300ms ease-in;
 }
+.bread_crumbs_section {
+  height: 4rem;
+  background-color: #f8f9f9;
+  padding: 1.5rem 0;
+  margin-bottom: 1rem;
+}
+.bread_crumbs_section a {
+  color: #999999;
+}
 
 @media (max-width: 480px) {
   .container {

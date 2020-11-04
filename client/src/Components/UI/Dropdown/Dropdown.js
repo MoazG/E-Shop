@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import classes from "./Dropdown.module.css";
 import { CSSTransition } from "react-transition-group";
-const Dropdown = ({ children, header, toggle, data, handleFilters }) => {
+const Dropdown = ({ children, header, style = "" }) => {
   const [listOpen, setListOpen] = useState(false);
   return (
     <div className={classes.Dd_wrapper}>
       <button
         className={classes.Dd_header}
         onClick={() => setListOpen(!listOpen)}
+        style={style ? style : null}
       >
         <p className={classes.Dd_header_title}>{header}</p>
         <span>

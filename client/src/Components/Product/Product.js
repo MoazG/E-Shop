@@ -2,14 +2,15 @@ import classes from "./Product.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../actions/cartActions";
+import { addToCart, addToSaved } from "../../actions/cartActions";
 import Button from "../UI/Button/Button";
 
-const Product = ({ product, width, clickHandler }) => {
+const Product = ({ product, width, clickHandler, refer }) => {
   const dispatch = useDispatch();
 
   return (
     <div
+      ref={refer && refer}
       className={`${classes.Product} ${classes.Product_conatiner_inner} ${
         width && classes[width]
       }`}
@@ -26,14 +27,13 @@ const Product = ({ product, width, clickHandler }) => {
             : product.name}
         </p>
         <h3 className={classes.Product_price}>
-          $
           {product.sale ? (
             <>
-              <span className={classes.Discount}>{product.product_price}</span>`
-              ${(product.product_price * (100 - product.discount)) / 100}`
+              <span className={classes.Discount}>${product.price}</span>$
+              {((product.price * (100 - product.discount)) / 100).toFixed(2)}
             </>
           ) : (
-            product.price
+            "$" + product.price
           )}
         </h3>
       </div>
@@ -55,7 +55,7 @@ const Product = ({ product, width, clickHandler }) => {
                 <span>sale</span>
               </li>
               <li>
-                <span>${product.discount}%</span>
+                <span>{product.discount}%</span>
               </li>
             </>
           )}
@@ -72,26 +72,12 @@ const Product = ({ product, width, clickHandler }) => {
           >
             Add to cart
           </Button>
-          // <button
-          //   onClick={() => dispatch(addToCart(product._id, 1))}
-          //   className={`${classes.Add_cart_btn} ${classes.Btn}`}
-          // >
-          //   add to cart
-          // </button>
         )}
       </div>
       <div className={classes.Action_link}>
         <ul>
-          {/* <li className={classes.Add_cart}>
-            <button onClick={() => dispatch(addToCart(product._id, 1))}>
-              <i className="fas fa-shopping-cart"></i>
-            </button>
-            <div className={classes.Tooltip_text}>
-              <p>Add to cart</p>
-            </div>
-          </li> */}
           <li className={classes.Add_wishlist}>
-            <button>
+            <button onClick={() => dispatch(addToSaved(product._id))}>
               <i className="far fa-heart"></i>
             </button>
             <div className={classes.Tooltip_text}>

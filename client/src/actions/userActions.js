@@ -115,7 +115,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: USER_DETAILS_FAILED,
       payload:

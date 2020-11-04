@@ -29,6 +29,11 @@
   border: 1px solid #c0c0c0;
   width: 80%;
 }
+.Discount {
+  text-decoration: line-through;
+  color: red;
+  margin-right: 10px;
+}
 .Other_img ul {
   display: flex;
   /* justify-content: space-between; */

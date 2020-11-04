@@ -5,6 +5,8 @@
   z-index: 200;
   top: 0;
   left: 0;
+  bottom: 0;
+  overflow-y: scroll;
   background-color: #333333;
   padding: 2rem 1rem;
   transition: transform 300ms ease-out;
@@ -14,9 +16,12 @@
 }
 .Sidedrawer_li {
   border-bottom: 1px solid #262626;
-  padding: 0.6rem 0.1rem;
 }
+
 .Sidedrawer_link {
+  display: inline-block;
+  width: 100%;
+  padding: 0.6rem 0.1rem;
   color: rgba(255, 255, 255, 0.7);
 }
 .Sidedrawer_login {
@@ -47,7 +52,7 @@
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   width: 100%;
-  padding: 0.1rem 0;
+  padding: 0.6rem 0.1rem;
 }
 .Sidedrawer_label {
   background: #444;
@@ -56,6 +61,7 @@
   display: block;
   font-size: 0.8571428571rem;
   margin-top: 0.4rem;
+  padding: 0.6rem 0.1rem;
   /* padding: 0.2857142857rem 1.0714285714rem; */
   /* padding-left: 1rem; */
   text-align: center;

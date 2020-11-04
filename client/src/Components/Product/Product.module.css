@@ -35,7 +35,8 @@
 }
 .Discount {
   text-decoration: line-through;
-  color: black;
+  color: red;
+  margin-right: 10px;
 }
 .Btn {
   display: inline-block;
@@ -188,6 +189,9 @@
     margin: 2% 1% 1%;
   }
   .Add_cart_btn {
+    opacity: 1;
+  }
+  .Action_link {
     opacity: 1;
   }
   .Action_link ul li {

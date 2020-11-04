@@ -5,7 +5,7 @@
   position: fixed;
   top: 20%;
   left: 32.5%;
-  z-index: 500;
+  z-index: 502;
   transition: transform 100ms ease-out;
   background-color: #fff;
   box-shadow: 0 0 2pt 1pt grey;

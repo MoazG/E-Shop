@@ -25,13 +25,17 @@
   font-size: 12px;
   visibility: hidden;
 }
+.Active {
+  visibility: visible;
+}
 
 .Login_form input:focus {
   box-shadow: 0 0 2pt 1pt #0063d1;
   border: 1px solid #fff;
 }
-.Is_invalid {
-  border: 1px solid #fff;
+.Login_form .Is_invalid {
+  /* border: 1px solid #fff; */
+  border: none;
   box-shadow: 0 0 2pt 1pt red;
 }
 
@@ -44,6 +48,9 @@
   color: red;
   font-size: 14px;
   padding: 5px;
+}
+.Info_active {
+  display: block;
 }
 
 .Login_form input[type="submit"] {
@@ -100,8 +107,8 @@
   width: 30%;
 }
 .Form_option {
-  height: 40px;
-  padding: 10px;
+  /* height: 40px; */
+  padding: 1rem 0;
 }
 .Forget_password {
   float: right;

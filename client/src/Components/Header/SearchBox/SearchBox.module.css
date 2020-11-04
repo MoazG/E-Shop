@@ -160,11 +160,11 @@
   .Search_box_cont {
     position: fixed;
     z-index: 99;
-    top: 61px;
+    top: 60px;
     left: 0;
     width: 100%;
     padding: 2px;
-    background-color: #fdfbfb;
+    background-color: #e8ebee;
     display: none;
   }
   .Active {

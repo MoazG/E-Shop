@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    favorites: [{ type: Object }],
   },
   {
     timestamps: true,

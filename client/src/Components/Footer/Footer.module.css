@@ -15,6 +15,12 @@
   font-size: 0.8rem;
   text-transform: capitalize;
 }
+.Footer_section a {
+  color: #222;
+}
+.Footer_section a:hover {
+  color: #0063d1;
+}
 .Footer_section_ul {
   list-style: none;
 }

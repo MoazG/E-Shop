@@ -38,7 +38,7 @@ const Topnav = () => {
                   </li>
                 )}
                 <li>
-                  <Link to="/profile" className={classes.My_account_btn}>
+                  <Link to="/profile/myinfo" className={classes.My_account_btn}>
                     Account Setting
                     <i className="fas fa-cog"></i>
                   </Link>
@@ -84,16 +84,16 @@ const Topnav = () => {
                   </li>
                 ) : null}
                 <li>
-                  <Link to="/profile" className={classes.My_account_btn}>
+                  <Link to="/profile/orders" className={classes.My_account_btn}>
                     My Orders
                     <i className="fa fa-shopping-cart"></i>
                   </Link>
                 </li>
                 <li>
-                  <button className={classes.My_account_btn}>
+                  <Link to="/profile/saved" className={classes.My_account_btn}>
                     Wish List
                     <i className="far fa-heart"></i>
-                  </button>
+                  </Link>
                 </li>
                 <li className={classes.Open_compare}>
                   <button className={classes.My_account_btn}>

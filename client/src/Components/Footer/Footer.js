@@ -10,18 +10,16 @@ const Footer = () => {
             <h2>My Account</h2>
             <ul className={classes.Footer_section_ul}>
               <li>
-                <Link href="/profile">My Account</Link>
+                <Link href="/profile/myinfo">My Account</Link>
               </li>
               <li>
-                <Link to="/order">Order History</Link>
+                <Link to="/profile/order">Order History</Link>
               </li>
               <li>
-                <a className="wish-list-btn" href="./wishList.html">
-                  wishing List
-                </a>
+                <Link href="profile/saved">Wish List</Link>
               </li>
               <li>
-                <Link href="/wishlist">Wish List</Link>
+                <Link href="profile/saved">Wish List</Link>
               </li>
             </ul>
           </div>

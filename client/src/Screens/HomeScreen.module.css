@@ -68,6 +68,10 @@
   width: 100%;
   overflow-x: auto;
 }
+.Products h2 {
+  padding: 1rem 0;
+  border-bottom: 1px solid #ebebeb;
+}
 
 /* media */
 @media (max-width: 640px) {

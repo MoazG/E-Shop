@@ -5,6 +5,7 @@ import {
   CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
+import { logout } from "./userActions";
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
@@ -15,6 +16,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       name: data.name,
       image: data.image,
       price: data.price,
+      discount: data.discount,
       countInStock: data.countInStock,
       qty,
     },
@@ -44,4 +46,81 @@ export const savePaymentMethod = (data) => (dispatch) => {
     payload: data,
   });
   localStorage.setItem("paymentMethod", JSON.stringify(data));
+};
+
+export const addToSaved = (id) => async (dispatch, getState) => {
+  console.log("id", id);
+  const {
+    userLogin: { userInfo },
+  } = getState();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+  try {
+    dispatch({ type: "SAVED_ITEM_ADD_REQUEST" });
+    const { data } = await axios.get(`/api/products/${id}`);
+    console.log(data.name);
+    const savedObject = {
+      _id: data._id,
+      name: data.name,
+      image: data.image[0],
+      price: data.price,
+    };
+    const { data: savedItems } = await axios.patch(
+      `/api/users/favorites`,
+      { product: savedObject },
+      config
+    );
+    dispatch({
+      type: "SAVED_ITEM_ADD_SUCCESS",
+      payload: savedItems,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: "SAVED_ITEM_ADD_FAIL",
+      payload: message,
+    });
+  }
+};
+export const removeFromSaved = (id) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+  try {
+    dispatch({ type: "SAVED_ITEM_DELETE_REQUEST" });
+    const { data } = await axios.patch(
+      `/api/users/favorites/${id}`,
+      {},
+      config
+    );
+    dispatch({ type: "SAVED_ITEM_DELETE_SUCCESS", payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: "SAVED_ITEM_DELETE_FAIL",
+      payload: message,
+    });
+  }
 };
