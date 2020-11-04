@@ -1,2 +1,3 @@
 # E-Shop
-MERN e-commerce
+
+MERN e-commerce app
