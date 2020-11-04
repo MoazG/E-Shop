@@ -8,10 +8,11 @@ import {
   listProductDetails,
 } from "../../actions/productActions";
 import Loader from "../../Components/Loader";
-import Message from "../../Components/Message";
+
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import classes from "./ProductScreen.module.css";
 import Button from "../../Components/UI/Button/Button";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const ProductScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -57,7 +58,7 @@ const ProductScreen = ({ match, history }) => {
     return <Loader />;
   };
   const errorState = () => {
-    return <Message variant={"danger"}>{error}</Message>;
+    return <Alert severity="error">{error}</Alert>;
   };
   let imageContRef = useRef(null);
   let mainImageRef = useRef(null);
@@ -224,7 +225,9 @@ const ProductScreen = ({ match, history }) => {
           <div className={classes.Review_cont}>
             <div className={classes.Reviews_list}>
               <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Review</Message>}
+              {product.reviews.length === 0 && (
+                <Alert severity="warning">No Review</Alert>
+              )}
               {product.reviews.map((review) => (
                 <div className={classes.Customer_review_cont} key={review._id}>
                   <Rating value={review.rating}></Rating>
@@ -239,7 +242,7 @@ const ProductScreen = ({ match, history }) => {
             </div>
             <div className={classes.Review_create}>
               {errorProductReview && (
-                <Message variant="danger">{errorProductReview}</Message>
+                <Alert severity="error">{errorProductReview}</Alert>
               )}
               <h2>Write a customer review</h2>
               {userInfo ? (
@@ -281,13 +284,13 @@ const ProductScreen = ({ match, history }) => {
                   </Button>
                 </form>
               ) : (
-                <Message>
+                <Alert severity="error">
                   Please{" "}
                   <Link to={`/login?redirect=/product/${productId}`}>
                     Login
                   </Link>{" "}
                   to review
-                </Message>
+                </Alert>
               )}
             </div>
           </div>

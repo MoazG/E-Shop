@@ -11,7 +11,7 @@ db
 /coverage
 
 # production
-/build
+/client/build
 
 # misc
 .env
@@ -26,4 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 
 
-img/
+

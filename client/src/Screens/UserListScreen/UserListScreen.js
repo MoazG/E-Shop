@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../Components/Message";
+
 import Loader from "../../Components/Loader";
 import { listUsers, deleteUser } from "../../actions/userActions";
 import { Link } from "react-router-dom";
 import classes from "./UserListScreen.module.css";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const UserListScreen = ({ history }) => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Alert severity="error">{error}</Alert>
       ) : (
         <div className={classes.User_table_cont}>
           <table className={`table`}>

@@ -50,7 +50,7 @@ const LoginScreen = ({ location, history }) => {
         </div>
       </div>
       {isInvalid.info && (
-        <Alert sevirity="error">Invalid Email or Password</Alert>
+        <Alert severity="error">Invalid Email or Password</Alert>
       )}
       <div className={`${classes.Form_container} container`}>
         {/* <h1 className={classes.Page_title}>Sign in</h1> */}

@@ -23,10 +23,10 @@ const alertType = {
   },
 };
 
-const Alert = ({ sevirity, children }) => {
+const Alert = ({ severity, children }) => {
   const containerStyle = {
-    backgroundColor: alertType[sevirity].bgcolor,
-    color: alertType[sevirity].color,
+    backgroundColor: alertType[severity].bgcolor,
+    color: alertType[severity].color,
   };
   return (
     <div
@@ -34,10 +34,10 @@ const Alert = ({ sevirity, children }) => {
       className={`container  ${classes.Alert_container}`}
     >
       <div
-        style={{ color: alertType[sevirity].icncolor }}
+        style={{ color: alertType[severity].icncolor }}
         className={classes.Alert_icon_cont}
       >
-        <i className={alertType[sevirity].icon}></i>
+        <i className={alertType[severity].icon}></i>
       </div>
       <div className={classes.Alert_container_message}>{children}</div>
     </div>
@@ -45,7 +45,7 @@ const Alert = ({ sevirity, children }) => {
 };
 
 Alert.defaultProps = {
-  sevirity: "warning",
+  severity: "warning",
   children: "this is warning message",
 };
 export default Alert;

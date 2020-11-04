@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../Components/Message";
+
 import Loader from "../../Components/Loader";
 
 import { getUserDetails, updateUser } from "../../actions/userActions";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import classes from "../LoginScreen/LoginScreen.module.css";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id;
@@ -53,11 +54,11 @@ const UserEditScreen = ({ match, history }) => {
       <div className={classes.Form_container}>
         <h1 className={classes.Page_title}>Edit User</h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
+        {errorUpdate && <Alert severity="error">{errorUpdate}</Alert>}
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message variant="danger">{error}</Message>
+          <Alert severity="error">{error}</Alert>
         ) : (
           <form className={classes.Login_form} onSubmit={submitHandler}>
             <div className={classes.Form_group}>

@@ -28,17 +28,17 @@ const Layout = ({ children }) => {
     <>
       {failSaveItem && (
         <div className={classes.Alert_cont}>
-          <Alert sevirity="warning">{failSaveItem}</Alert>
+          <Alert severity="warning">{failSaveItem}</Alert>
         </div>
       )}
       {sucessAddToCart && (
         <div className={classes.Alert_cont}>
-          <Alert sevirity="success">{productName} Added To Your Cart</Alert>
+          <Alert severity="success">{productName} Added To Your Cart</Alert>
         </div>
       )}
       {successSaveItem && (
         <div className={classes.Alert_cont}>
-          <Alert sevirity="success">{favorites} added to your wishlist</Alert>
+          <Alert severity="success">{favorites} added to your wishlist</Alert>
         </div>
       )}
       <Header />

@@ -11,13 +11,13 @@ import {
 } from "../actions/productActions";
 
 import Loader from "../Components/Loader";
-import Message from "../Components/Message";
 
 import classes from "./HomeScreen.module.css";
 import QuickViewProduct from "../Components/QuickViewProduct/QuickViewProduct";
 import Backdrop from "../Components/UI/Backdrop/Backdrop";
 import { Link } from "react-router-dom";
 import Carousel from "../Components/UI/Carousel/Carousel";
+import Alert from "../Components/UI/Alert/Alert";
 
 const HomeScreen = ({ match }) => {
   const [showQuickView, setShowQuickView] = useState(false);
@@ -71,7 +71,7 @@ const HomeScreen = ({ match }) => {
     return <Loader />;
   };
   const errorState = () => {
-    return <Message variant={"danger"}>{error}</Message>;
+    return <Alert severity="error">{error}</Alert>;
   };
   return (
     <>

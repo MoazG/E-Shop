@@ -3,11 +3,12 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Message from "../../Components/Message";
+
 import CheckOutSteps from "../../Components/UI/CheckOutSteps/CheckOutSteps";
 import { createOrder } from "../../actions/orderActions";
 
 import classes from "./PlaceOrderScreen.module.css";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const PlaceOrderScreen = ({ history }) => {
     let cartItems = cart.cartItems.map((product) => {
       return { ...product, image: product.image[0] };
     });
-    console.log("cartItemsInPlaceOrder", cartItems);
+
     dispatch(
       createOrder({
         orderItems: cartItems,
@@ -65,7 +66,6 @@ const PlaceOrderScreen = ({ history }) => {
       })
     );
   };
-  console.log("cart", cart);
 
   return (
     <div className="container">
@@ -88,7 +88,7 @@ const PlaceOrderScreen = ({ history }) => {
           </div>
           <div className={classes.List_order_items}>
             {cart.cartItems.length === 0 ? (
-              <Message>Your cart is empty </Message>
+              <Alert severity="warning">Your cart is empty </Alert>
             ) : (
               <div className={classes.Cart_table_cont}>
                 <h4>Order products</h4>

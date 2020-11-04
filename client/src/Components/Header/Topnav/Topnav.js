@@ -15,7 +15,7 @@ const Topnav = () => {
       <div className="container">
         <ul className={classes.Top_nav_ul}>
           <li className="top_nav_li_left">
-            <p>Telephone Enquiry: (012)800 456 789 – 987</p>
+            <p>Telephone Enquiry: (012)700 111 222 – 987</p>
           </li>
           <li className={classes.Top_nav_li_right}>
             <div

@@ -123,7 +123,7 @@ const OrderScreen = ({ match, history }) => {
               {order.shippingAddress.country}
             </p>
             {order.isDelivered ? (
-              <Alert sevirity="success">Delivered on {order.deliveredAt}</Alert>
+              <Alert severity="success">Delivered on {order.deliveredAt}</Alert>
             ) : (
               <Alert variant="warning">Not Delivered</Alert>
             )}
@@ -134,7 +134,7 @@ const OrderScreen = ({ match, history }) => {
               {order.paymentMethod}
             </p>
             {order.isPaid ? (
-              <Alert sevirity="success">
+              <Alert severity="success">
                 <strong>Paid on</strong> {order.paidAt}
               </Alert>
             ) : (
@@ -143,7 +143,7 @@ const OrderScreen = ({ match, history }) => {
           </div>
           <div className={classes.List_order_items}>
             {order.orderItems.length === 0 ? (
-              <Alert sevirity="error">Your cart is empty </Alert>
+              <Alert severity="error">Your cart is empty </Alert>
             ) : (
               <div className={classes.Cart_table_cont}>
                 <h4>Order products</h4>

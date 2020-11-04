@@ -1,6 +1,6 @@
 import React from "react";
-import Switch from "react-bootstrap/esm/Switch";
-import { Route } from "react-router-dom";
+
+import { Route, Switch } from "react-router-dom";
 import Button from "../../Components/UI/Button/Button";
 import BrandListScreen from "../BrandListScreen/BrandListScreen";
 import CategoryListScreen from "../CategoryListScreen/CategoryListScreen";

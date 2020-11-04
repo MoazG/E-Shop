@@ -7,10 +7,10 @@ import { listProductDetails } from "../../actions/productActions";
 
 import Rating from "../UI/Rating/Rating";
 import Loader from "../Loader";
-import Message from "../Message";
 import Button from "../UI/Button/Button";
 
 import classes from "./QuickViewProduct.module.css";
+import Alert from "../UI/Alert/Alert";
 
 const QuickViewProduct = ({ productId, showQuickView, setShowQuickView }) => {
   const history = useHistory();
@@ -33,7 +33,7 @@ const QuickViewProduct = ({ productId, showQuickView, setShowQuickView }) => {
     return <Loader />;
   };
   const errorState = () => {
-    return <Message variant={"danger"}>{error}</Message>;
+    return <Alert severity="error">{error}</Alert>;
   };
   let imageContRef = useRef(null);
   let mainImageRef = useRef(null);

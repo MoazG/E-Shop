@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import { register } from "../../actions/userActions";
 import classes from "../LoginScreen/LoginScreen.module.css";
 import Loader from "../../Components/Loader";
-import Message from "../../Components/Message";
+
 import { registerValidate } from "./validateRegister";
 import Button from "../../Components/UI/Button/Button";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const RegisterScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -58,7 +59,7 @@ const RegisterScreen = ({ location, history }) => {
       </div>
       <div className={`${classes.Form_container} container`}>
         {/* <h1 className={classes.Page_title}>Sign Up</h1> */}
-        {error && <Message variant="danger">{error}</Message>}
+        {error && <Alert severity="error">{error}</Alert>}
         {loading && <Loader></Loader>}
         <form
           noValidate

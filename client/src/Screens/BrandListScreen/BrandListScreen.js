@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 
-import Message from "../../Components/Message";
 import Loader from "../../Components/Loader";
 // import Paginate from "../../Components/Paginate";
 import Modal from "../../Components/UI/Modal/Modal";
@@ -17,6 +16,7 @@ import {
   updateBrand,
   deleteBrand,
 } from "../../actions/brandActions";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const BrandListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
@@ -235,7 +235,7 @@ const BrandListScreen = ({ history, match }) => {
   };
 
   const renderError = (error) => {
-    return <Message>{error}</Message>;
+    return <Alert severity="error">{error}</Alert>;
   };
 
   return categoriesLoading || loading ? (
@@ -267,15 +267,6 @@ const BrandListScreen = ({ history, match }) => {
           </div>
         </div>
 
-        {/* {loadingDelete && <Loader />}
-        {errorDelete && <Message variant="danger">{errorDelete}</Message>}
-        {loadingCreate && <Loader />}
-        {errorCreate && <Message variant="danger">{errorCreate}</Message>} */}
-        {/* {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant="danger">{error}</Message>
-        ) : ( */}
         <div className={`${classes.Table_cont}`}>
           <table className={`table ${classes.Brand_table}`}>
             <thead>

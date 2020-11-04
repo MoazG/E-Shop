@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../Components/Message";
+
 import Loader from "../../Components/Loader";
 
 import {
@@ -19,6 +19,7 @@ import Button from "../../Components/UI/Button/Button";
 import { listCategories } from "../../actions/categoryActions";
 import { CATEGORY_LIST_RESET } from "../../constants/categoryConstants";
 import { BRAND_LIST_RESET } from "../../constants/brandConstants";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const ProductEditScreen = ({ match, history, location }) => {
   const productId = match.params.id;
@@ -136,11 +137,11 @@ const ProductEditScreen = ({ match, history, location }) => {
       <div className={classes.Form_container}>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
+        {errorUpdate && <Alert severity="error">{error}</Alert>}
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message variant="danger">{error}</Message>
+          <Alert severity="error">{error}</Alert>
         ) : (
           <form className={classes.Login_form} onSubmit={submitHandler}>
             <div className={classes.Form_group}>
@@ -255,17 +256,6 @@ const ProductEditScreen = ({ match, history, location }) => {
               />
 
               {uploading && <Loader />}
-              {/* <div className={css.Product_img_cont}>
-                {image.map((img, i) => (
-                  <img
-                    className={css.Product_img}
-                    height="100"
-                    src={img}
-                    key={i}
-                    alt="product-img"
-                  ></img>
-                ))}
-              </div> */}
             </div>
 
             <div className={classes.Form_group}>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../Components/Message";
+
 import Loader from "../../Components/Loader";
 import {
   listProducts,
@@ -12,6 +12,7 @@ import classes from "./ProductListScreen.module.css";
 import { Link } from "react-router-dom";
 import Button from "../../Components/UI/Button/Button";
 import Pagination from "../../Components/UI/Pagination/Pagination";
+import Alert from "../../Components/UI/Alert/Alert";
 // import Modal from "../../Components/UI/Modal/Modal";
 
 const ProductListScreen = ({ history, match }) => {
@@ -90,13 +91,13 @@ const ProductListScreen = ({ history, match }) => {
         </div>
 
         {loadingDelete && <Loader />}
-        {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+        {errorDelete && <Alert severity="error">{errorDelete}</Alert>}
         {loadingCreate && <Loader />}
-        {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+        {errorCreate && <Alert severity="error">{errorCreate}</Alert>}
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message variant="danger">{error}</Message>
+          <Alert severity="error">{error}</Alert>
         ) : (
           <div className={classes.Product_table_cont}>
             <table className={`table ${classes.Productlist_table}`}>

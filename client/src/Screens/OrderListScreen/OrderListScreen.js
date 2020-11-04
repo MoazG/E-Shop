@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../Components/Message";
+
 import Loader from "../../Components/Loader";
 import { listOrders } from "../../actions/orderActions";
 import { Link } from "react-router-dom";
 import classes from "./OrderListScreen.module.css";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const OrderListScreen = ({ history }) => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Alert severity="error">{error}</Alert>
       ) : (
         <div className={classes.Order_table_cont}>
           <table className={`table ${classes.Order_table}`}>

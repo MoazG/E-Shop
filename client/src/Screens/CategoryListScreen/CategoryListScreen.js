@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Message from "../../Components/Message";
 import Loader from "../../Components/Loader";
 // import Paginate from "../../Components/Paginate";
 import Modal from "../../Components/UI/Modal/Modal";
@@ -17,6 +16,7 @@ import {
 } from "../../actions/categoryActions";
 import { CATEGORY_LIST_RESET } from "../../constants/categoryConstants";
 import Pagination from "../../Components/UI/Pagination/Pagination";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const CategoryListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
@@ -194,14 +194,10 @@ const CategoryListScreen = ({ history, match }) => {
           </div>
         </div>
 
-        {/* {loadingDelete && <Loader />}
-        {errorDelete && <Message variant="danger">{errorDelete}</Message>}
-        {loadingCreate && <Loader />}
-        {errorCreate && <Message variant="danger">{errorCreate}</Message>} */}
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message variant="danger">{error}</Message>
+          <Alert severity="error">{error}</Alert>
         ) : (
           <div className={`${classes.Table_cont}`}>
             <table className={`table ${classes.Cat_table}`}>

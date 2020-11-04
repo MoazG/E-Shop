@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 
 import Product from "../../Components/Product/Product";
 import Loader from "../../Components/Loader";
-import Message from "../../Components/Message";
+
 import CheckBox from "../../Components/CheckBox/CheckBox";
 
 import { listFilteredProducts } from "../../actions/productActions";
@@ -15,6 +15,7 @@ import QuickViewProduct from "../../Components/QuickViewProduct/QuickViewProduct
 import { Link } from "react-router-dom";
 import Dropdown from "../../Components/UI/Dropdown/Dropdown";
 import Button from "../../Components/UI/Button/Button";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const ProductFilterScreen = ({ match, location }) => {
   const keyword = match.params.keyword;
@@ -107,7 +108,7 @@ const ProductFilterScreen = ({ match, location }) => {
   };
 
   const errorState = () => {
-    return <Message variant={"danger"}>{error}</Message>;
+    return <Alert severity="error">{error}</Alert>;
   };
 
   const handleFilter = (filter, filterBy) => {

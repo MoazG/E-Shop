@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 /* eslint-disable*/
 import Loader from "../../Components/Loader";
-import Message from "../../Components/Message";
+
 import { Link, NavLink, Route, Switch } from "react-router-dom";
 import UserInfo from "./UserInfo/UserInfo";
 import UserOrders from "./UserOrders/UserOrders";

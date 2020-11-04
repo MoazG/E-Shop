@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { listSearchProducts } from "../../../actions/productActions";
 
-import Message from "../../Message";
+import Alert from "../../UI/Alert/Alert";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import classes from "./SearchBox.module.css";
 const SearchBox = ({ showSearch }) => {
@@ -63,7 +63,7 @@ const SearchBox = ({ showSearch }) => {
         {loading ? (
           <div className={classes.Loader}>Loading...</div>
         ) : error ? (
-          <Message />
+          <Alert severity="error">{error}</Alert>
         ) : products.length === 0 ? (
           <h3>No Products</h3>
         ) : (
