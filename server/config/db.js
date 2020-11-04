@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import color from "colors";
 const connectDB = async () => {
   try {
     const connect = await mongoose.connect(process.env.DATABASE, {
@@ -7,7 +6,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
     });
-    console.log(`MongoDb connected: ${connect.connection.host}`.cyan);
+    console.log(`MongoDb connected: ${connect.connection.host}`);
   } catch (error) {
     console.error(`Error : ${error.message}`.red.bold);
     process.exit(1);
