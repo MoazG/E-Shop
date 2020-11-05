@@ -124,7 +124,7 @@ const Bottomnav = () => {
                   </Link>
                 </li>
                 <li className={classes.Main_menu_item}>
-                  <Link href="/aboutus">About Us</Link>
+                  <Link to="/aboutus">About Us</Link>
                 </li>
               </ul>
             </div>
