@@ -12,18 +12,21 @@ const Layout = ({ children }) => {
     favorites,
   } = useSelector((state) => state.addFavoriteItem);
 
-  const { success: sucessAddToCart, productName } = useSelector(
-    (state) => state.cart
-  );
+  const {
+    success: sucessAddToCart,
+    productName,
+    updated,
+    removed,
+  } = useSelector((state) => state.cart);
 
   useEffect(() => {
     if (successSaveItem || failSaveItem) {
       setTimeout(() => dispatch({ type: "SAVED_ITEM_ADD_RESET" }), 3000);
     }
-    if (sucessAddToCart) {
+    if (sucessAddToCart || removed) {
       setTimeout(() => dispatch({ type: "CART_ADD_ITEM_RESET" }), 3000);
     }
-  });
+  }, [successSaveItem, sucessAddToCart, failSaveItem, dispatch, removed]);
   return (
     <>
       {failSaveItem && (
@@ -33,7 +36,16 @@ const Layout = ({ children }) => {
       )}
       {sucessAddToCart && (
         <div className={classes.Alert_cont}>
-          <Alert severity="success">{productName} Added To Your Cart</Alert>
+          <Alert severity="success">
+            {updated
+              ? "Product quantity has been updated"
+              : `${productName} Added To Your Cart`}
+          </Alert>
+        </div>
+      )}
+      {removed && (
+        <div className={classes.Alert_cont}>
+          <Alert severity="success">Product removed from Your Cart</Alert>
         </div>
       )}
       {successSaveItem && (

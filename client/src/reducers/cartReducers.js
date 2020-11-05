@@ -22,6 +22,9 @@ export const cartReducer = (
               x.product === exist.product ? item : x
             ),
           ],
+          success: true,
+          productName: item.name,
+          updated: true,
         };
       } else {
         return {
@@ -34,13 +37,20 @@ export const cartReducer = (
     case "CART_ADD_ITEM_FAIL":
       return { ...state, error: action.payload };
     case "CART_ADD_ITEM_RESET":
-      return { ...state, success: false, productName: "" };
+      return {
+        ...state,
+        success: false,
+        productName: "",
+        updated: false,
+        removed: false,
+      };
     case CART_REMOVE_ITEM:
       return {
         ...state,
         cartItems: state.cartItems.filter(
           (elm) => elm.product !== action.payload
         ),
+        removed: true,
       };
     case CART_RESET_ITEMS:
       return { cartItems: [], shippingAddress: {} };

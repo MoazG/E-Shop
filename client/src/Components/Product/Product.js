@@ -1,18 +1,43 @@
-import classes from "./Product.module.css";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToSaved } from "../../actions/cartActions";
+import {
+  addToCart,
+  addToSaved,
+  removeFromCart,
+} from "../../actions/cartActions";
 import Button from "../UI/Button/Button";
+
+import classes from "./Product.module.css";
 
 const Product = ({ product, width, clickHandler, refer }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const userDetails = useSelector((state) => state.userLogin);
   const { userInfo } = userDetails;
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  const cartProducts = {};
+
+  cartItems.forEach((item) => {
+    cartProducts[`${item.product}`] = item.qty;
+  });
 
   const addToFavorite = (id) => {
     !userInfo ? history.push("/login") : dispatch(addToSaved(id));
+  };
+  const handleIncQty = (id, prevQty) => {
+    if (prevQty === product.countInStock) return;
+    dispatch({ type: "CART_ADD_ITEM_RESET" });
+    dispatch(addToCart(id, ++prevQty));
+  };
+  const handleDecQty = (id, prevQty) => {
+    if (prevQty === 1) {
+      dispatch(removeFromCart(id));
+    } else {
+      dispatch(addToCart(id, --prevQty));
+    }
   };
   return (
     <>
@@ -71,6 +96,35 @@ const Product = ({ product, width, clickHandler, refer }) => {
         <div className={classes.Add_to_cart}>
           {product.countInStock === 0 ? (
             <button className={classes.Btn}>Sold Out</button>
+          ) : cartProducts[product._id] ? (
+            <div className={classes.Cart_options}>
+              <div className={classes.Item_btn}>
+                <Button
+                  color="primary"
+                  style={{ borderRadius: "0 0 0 4px" }}
+                  onClick={() =>
+                    handleDecQty(product._id, cartProducts[product._id])
+                  }
+                >
+                  -
+                </Button>
+              </div>
+              <div className={classes.Item_qty}>
+                {cartProducts[product._id]}
+              </div>
+              <div className={classes.Item_btn}>
+                <Button
+                  disabled={cartProducts[product._id] === product.countInStock}
+                  color="primary"
+                  style={{ borderRadius: "0 0 4px 0" }}
+                  onClick={() =>
+                    handleIncQty(product._id, cartProducts[product._id])
+                  }
+                >
+                  +
+                </Button>
+              </div>
+            </div>
           ) : (
             <Button
               cart={true}
