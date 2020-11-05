@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 import classes from "../LoginScreen/LoginScreen.module.css";
@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CheckOutSteps from "../../Components/UI/CheckOutSteps/CheckOutSteps";
 import { saveShippingAddress } from "../../actions/cartActions";
+import Button from "../../Components/UI/Button/Button";
+import Alert from "../../Components/UI/Alert/Alert";
 
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -15,18 +17,27 @@ const ShippingScreen = ({ history }) => {
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
+  const [alert, setAlert] = useState(false);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setTimeout(() => setAlert(false), 7000);
+  });
+
   const submitHandler = (e) => {
     e.preventDefault();
+    if (!country || !city || !address || !postalCode) {
+      setAlert(true);
+      return;
+    }
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
     history.push("/payment");
   };
   return (
     <div className={`${classes.Form_container} container`}>
       <CheckOutSteps step1 step2 />
-
+      {alert && <Alert severity="warning">All fields are required</Alert>}
       <form onSubmit={submitHandler} className={classes.Login_form}>
         <div className={classes.Form_group}>
           <label htmlFor="user-address">Address</label>
@@ -58,12 +69,12 @@ const ShippingScreen = ({ history }) => {
         </div>
 
         <div className={classes.Form_group}>
-          <label htmlFor="register_password">Country</label>
+          <label htmlFor="country">Country</label>
           <input
             type="text"
             placeholder="Enter Your country"
             name="user_country"
-            id="register_password"
+            id="country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           />
@@ -88,53 +99,10 @@ const ShippingScreen = ({ history }) => {
         <div className={classes.Invalid_info}>
           <p>Email or Password is incorrect</p>
         </div>
-        <input type="submit" value="Continue" />
-      </form>
-      {/* <Form onSubmit={submitHandler}>
-        <FormGroup controlId="address">
-          <FormLabel>Address</FormLabel>
-          <FormControl
-            type="text"
-            placeholder="Enter your Address"
-            value={address}
-            required
-            onChange={(e) => setAddress(e.target.value)}
-          ></FormControl>
-        </FormGroup>
-        <FormGroup controlId="city">
-          <FormLabel>City</FormLabel>
-          <FormControl
-            type="text"
-            placeholder="Enter your city"
-            value={city}
-            required
-            onChange={(e) => setCity(e.target.value)}
-          ></FormControl>
-        </FormGroup>
-        <FormGroup controlId="country">
-          <FormLabel>Country</FormLabel>
-          <FormControl
-            type="text"
-            placeholder="Enter your country"
-            value={country}
-            required
-            onChange={(e) => setCountry(e.target.value)}
-          ></FormControl>
-        </FormGroup>
-        <FormGroup controlId="postalCode">
-          <FormLabel>postalCode</FormLabel>
-          <FormControl
-            type="text"
-            placeholder="Enter your postalCode"
-            value={postalCode}
-            required
-            onChange={(e) => setPostalCode(e.target.value)}
-          ></FormControl>
-        </FormGroup>
-        <Button type="submit" variant="primary">
+        <Button color="primary" style={{ width: "100%" }}>
           Continue
         </Button>
-      </Form>*/}
+      </form>
     </div>
   );
 };
