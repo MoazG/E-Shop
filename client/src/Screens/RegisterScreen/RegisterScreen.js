@@ -126,7 +126,10 @@ const RegisterScreen = ({ location, history }) => {
                 isInvalid.password ? classes.Active : null
               }`}
             >
-              <p>Please entaer a valid Password</p>
+              <p>
+                Password must be at least eight characters, at least one letter
+                and one number
+              </p>
             </div>
           </div>
           <div className={classes.Form_group}>

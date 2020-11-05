@@ -16,7 +16,13 @@
 
 .Checkout_steps > div.Active {
   border-top: 0.3rem #0063d1 solid;
+}
+.Checkout_steps div a {
   color: #0063d1;
+}
+.Checkout_steps > div.Disabled a {
+  color: #777777;
+  cursor: auto;
 }
 @media (max-width: 640px) {
   .Checkout_steps {

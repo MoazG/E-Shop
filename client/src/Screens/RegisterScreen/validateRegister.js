@@ -1,5 +1,6 @@
 let emailRegex = new RegExp(/[^@]+@[^.]+\..+/);
 let nameRegex = new RegExp(/^[A-Za-z]/);
+let passRegex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
 export const registerValidate = (
   name,
   email,
@@ -18,7 +19,7 @@ export const registerValidate = (
     num++;
     obj.email = true;
   }
-  if (!password || password.length < 6) {
+  if (!password || !passRegex.test(password)) {
     num++;
     obj.password = true;
   }

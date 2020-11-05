@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../../actions/cartActions";
+import Button from "../../Components/UI/Button/Button";
 import CheckOutSteps from "../../Components/UI/CheckOutSteps/CheckOutSteps";
 
 import classes from "../LoginScreen/LoginScreen.module.css";
@@ -40,8 +41,9 @@ const PaymentScreen = ({ history }) => {
           />
           <label htmlFor="payment_method">Paypal</label>
         </div>
-
-        <input type="submit" value="Continue" />
+        <Button color="primary" style={{ width: "100%" }}>
+          Continue
+        </Button>
       </form>
     </div>
   );

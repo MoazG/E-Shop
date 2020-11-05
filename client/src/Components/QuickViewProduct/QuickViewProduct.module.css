@@ -56,7 +56,9 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #c4bbbb;
 }
-
+.Product_info_text h2 {
+  padding-top: 0;
+}
 .Product_info_img {
   flex: 0 1 40%;
 }
