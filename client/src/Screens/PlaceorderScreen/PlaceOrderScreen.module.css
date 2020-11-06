@@ -36,9 +36,7 @@
 .Shipping_address {
   font-size: 0.9rem;
 }
-/* .Cart_tale_cont {
-  text-align: center;
-} */
+
 .Cart_table {
   margin: 0 auto;
 }
@@ -73,6 +71,13 @@
 }
 .Cart_table td {
   max-height: 100px;
+}
+.Table_product_name a {
+  color: #000;
+  transition: color 300ms ease-in;
+}
+.Table_product_name a:hover {
+  color: #0063d1;
 }
 
 .Order_summary > div {
@@ -119,6 +124,10 @@
   .Cart_table_cont h4 {
     padding: 1rem 1rem 0;
   }
+  .Cart_table tbody td {
+    font-size: 0.8rem;
+    padding: 0.6rem 0;
+  }
   .Order_summary {
     flex: 0 0 100%;
     border: 1px solid #cdcdcd;
@@ -127,8 +136,5 @@
     border: 1px solid #cdcdcd;
     background-color: #fff;
     height: fit-content;
-  }
-  .Cart_table tbody {
-    font-size: 0.8rem;
   }
 }

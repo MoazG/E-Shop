@@ -8,6 +8,9 @@ td {
   border-collapse: collapse;
   text-align: center;
 }
+.Cart_section th {
+  border: none;
+}
 
 .Cart_section img {
   width: 50%;
@@ -30,33 +33,25 @@ td {
   font-size: 14px;
   background-color: #fff;
 }
-.Cart_table td {
-  max-height: 100px;
+.Table_product_name a {
+  color: #000;
+  transition: color 200ms ease-in;
 }
-.Table_product_remove {
-  width: 10%;
+.Table_product_name a:hover {
+  color: #0063d1;
 }
+
 .Table_product_remove button {
   background: none;
   border: none;
   font-size: 1rem;
+  transition: color 200ms ease-in;
 }
-.Table_product_thumb {
-  width: 20%;
-  max-height: 100px;
+.Table_product_remove button:hover {
+  color: #dc004e;
+  cursor: pointer;
 }
-.Table_product_name {
-  width: 30%;
-}
-.Table_product_price {
-  width: 10%;
-}
-.Table_product_qty {
-  width: 17%;
-}
-/* .Table_product_total_price {
-  width: 13%;
-} */
+
 .Qty_dropdown {
   width: 80%;
   padding: 1rem;
@@ -73,25 +68,32 @@ td {
 .Cart_table tfoot .Cart_total {
   background-color: #e7e7e7;
   color: #000;
-  /* border: 1px solid #242424; */
 }
-.Cart_table tfoot .Btn {
-  display: inline-block;
+
+.Cart_options_btn button {
   width: 60%;
-  background-color: #0063d1;
-  border: none;
-  color: white;
-  text-align: center;
-  border-radius: 3px;
-  padding: 10px;
-  margin-right: 0.5rem;
-  font-size: 14px;
-  font-weight: 500;
-  transition: opacity 500ms ease-in-out, background-color 400ms;
-  cursor: pointer;
 }
+
 .Cart_options {
-  border: 1px solid #cdcdcd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.Item_qty {
+  text-align: center;
+  flex: 0 1 40%;
+  padding: 8px 0;
+}
+.Item_btn {
+  flex: 0 1 30%;
+}
+.Item_btn button {
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+  min-width: 30px;
+  padding: 0 5px;
 }
 
 @media (max-width: 640px) {
@@ -99,13 +101,99 @@ td {
     width: 80%;
     margin-bottom: 0.2rem;
   }
-  .Cart_table th,
-  .Cart_table td {
-    font-size: 0.8rem;
+
+  .Cart_section .Cart_table {
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+    border: none;
   }
-  .Cart_table tbody tr {
-    height: 60px;
+  .Cart_table th {
+    display: block;
+    height: 0;
   }
+  .Cart_table .Table_thead_tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .Cart_table tbody,
+  .Cart_table tfoot {
+    display: block;
+    width: 100%;
+  }
+
+  .Cart_section .Cart_table tbody tr {
+    display: block;
+    min-width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  .Cart_section .Cart_table td {
+    display: block;
+    min-width: 100%;
+    padding: 0.7rem;
+  }
+  .Table_product_name {
+    padding: 0.2rem;
+  }
+  .Cart_table tbody tr td {
+    border: none;
+  }
+  .Cart_section .Cart_table .Table_product_thumb {
+    padding: 0;
+    max-height: 235px;
+  }
+  .Table_product_thumb img {
+    padding: 0;
+    width: 50%;
+    max-height: 200px;
+  }
+  .Table_product_name {
+    padding: 1rem;
+  }
+  .Table_product_remove button {
+    background-color: #dc004e;
+    color: #fff;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    font-weight: 500;
+    transition: background-color 300ms ease-in;
+  }
+  .Table_product_remove button:hover {
+    background-color: rgb(154, 0, 54);
+  }
+  .Table_product_remove button:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 5px 7px 1px rgba(0, 0, 0, 0.14), 0 3px 10px 2px rgba(0, 0, 0, 0.12);
+  }
+  .Cart_section .Cart_table tfoot tr {
+    display: block;
+  }
+
+  .Cart_table tfoot .Cart_total {
+    font-weight: 600;
+    background: none;
+    color: #000;
+  }
+  .Cart_total_title {
+    font-size: 1.2rem;
+  }
+  .Cart_options_btn button {
+    width: 100%;
+  }
+  .Table_product_name a {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .Item_btn button {
+    padding: 0.5rem;
+  }
+
   .Qty_dropdown {
     width: 100%;
     padding: 0.5rem;

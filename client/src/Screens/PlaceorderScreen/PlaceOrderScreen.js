@@ -9,6 +9,7 @@ import { createOrder } from "../../actions/orderActions";
 
 import classes from "./PlaceOrderScreen.module.css";
 import Alert from "../../Components/UI/Alert/Alert";
+import Button from "../../Components/UI/Button/Button";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -114,16 +115,14 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </td>
                         <td className={classes.Table_product_price}>
-                          <p>
-                            ${" "}
-                            {(
-                              (product.price * (100 - product.discount)) /
-                              100
-                            ).toFixed(2)}
-                          </p>
+                          ${" "}
+                          {(
+                            (product.price * (100 - product.discount)) /
+                            100
+                          ).toFixed(2)}
                         </td>
                         <td className={classes.Table_product_qty}>
-                          <p>{product.qty}</p>
+                          {product.qty}
                         </td>
                         <td className={classes.Table_product_total}>
                           $
@@ -165,13 +164,14 @@ const PlaceOrderScreen = ({ history }) => {
             <strong>Total price: </strong>
             <p>{cart.totalPrice}</p>
           </div>
-          <button
-            className={classes.Btn}
+          <Button
+            color="primary"
             disabled={cart.cartItems.length === 0}
             onClick={placeOrderHandler}
+            style={{ width: "100%", padding: ".6rem", marginBottom: "0" }}
           >
             Place Order
-          </button>
+          </Button>
         </div>
       </div>
     </div>
