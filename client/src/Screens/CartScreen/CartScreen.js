@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
+import Button from "../../Components/UI/Button/Button";
 // import Message from "../../Components/Message";
 
 const CartScreen = ({ location, match, history }) => {
@@ -23,6 +24,18 @@ const CartScreen = ({ location, match, history }) => {
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
+  };
+  const handleIncQty = (id, prevQty, countInStock) => {
+    if (prevQty === countInStock) return;
+    dispatch({ type: "CART_ADD_ITEM_RESET" });
+    dispatch(addToCart(id, ++prevQty));
+  };
+  const handleDecQty = (id, prevQty) => {
+    if (prevQty === 1) {
+      return;
+    } else {
+      dispatch(addToCart(id, --prevQty));
+    }
   };
   const checkOutHandler = () => {
     history.push("/login?redirect=shipping");
@@ -43,26 +56,21 @@ const CartScreen = ({ location, match, history }) => {
             <div className={classes.Cart_table_cont}>
               <table className={classes.Cart_table}>
                 <thead>
-                  <tr>
-                    <th className={classes.Product_remove}>Remove</th>
+                  <tr className={classes.Table_thead_tr}>
                     <th className={classes.Product_thumb}>Image</th>
                     <th className={classes.Product_name}>Product</th>
                     <th className={classes.Product_price}>Price</th>
                     <th className={classes.Product_qty}>Quantity</th>
+                    <th className={classes.Product_remove}>Remove</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems.map((product, i) => (
                     <tr key={i}>
-                      <td className={classes.Table_product_remove}>
-                        <button
-                          onClick={() => removeFromCartHandler(product.product)}
-                        >
-                          <i className="fas fa-trash-alt"></i>
-                        </button>
-                      </td>
                       <td className={classes.Table_product_thumb}>
-                        <img src={product.image[0]} alt={product.name} />
+                        <Link to={`/product/${product.product}`}>
+                          <img src={product.image[0]} alt={product.name} />
+                        </Link>
                       </td>
                       <td className={classes.Table_product_name}>
                         <Link to={`/product/${product.product}`}>
@@ -79,7 +87,7 @@ const CartScreen = ({ location, match, history }) => {
                         </p>
                       </td>
                       <td className={classes.Table_product_qty}>
-                        <select
+                        {/* <select
                           className={classes.Qty_dropdown}
                           value={product.qty}
                           onChange={(e) =>
@@ -95,7 +103,41 @@ const CartScreen = ({ location, match, history }) => {
                               </option>
                             )
                           )}
-                        </select>
+                        </select> */}
+                        <div className={classes.Cart_options}>
+                          <div className={classes.Item_btn}>
+                            <Button
+                              disabled={product.qty === 1}
+                              onClick={() =>
+                                handleDecQty(product.product, product.qty)
+                              }
+                            >
+                              -
+                            </Button>
+                          </div>
+                          <div className={classes.Item_qty}>{product.qty}</div>
+                          <div className={classes.Item_btn}>
+                            <Button
+                              disabled={product.qty === product.countInStock}
+                              onClick={() =>
+                                handleIncQty(
+                                  product.product,
+                                  product.qty,
+                                  product.countInStock
+                                )
+                              }
+                            >
+                              +
+                            </Button>
+                          </div>
+                        </div>
+                      </td>
+                      <td className={classes.Table_product_remove}>
+                        <button
+                          onClick={() => removeFromCartHandler(product.product)}
+                        >
+                          <i className="fas fa-trash-alt"></i>
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -103,7 +145,7 @@ const CartScreen = ({ location, match, history }) => {
                 <tfoot>
                   <tr>
                     <td colSpan="2" className={classes.Cart_total}>
-                      <p>Cart Total</p>
+                      <p className={classes.Cart_total_title}>Cart Total</p>
                     </td>
                     <td colSpan="1" className={classes.Cart_total}>
                       <p className={classes.Cart_total_price}>
@@ -119,16 +161,10 @@ const CartScreen = ({ location, match, history }) => {
                           .toFixed(2)}
                       </p>
                     </td>
-                    <td colSpan="3" className={classes.Cart_options}>
-                      <button
-                        onClick={checkOutHandler}
-                        className={`${classes.Btn} ${classes.Update_cart}`}
-                      >
+                    <td colSpan="3" className={classes.Cart_options_btn}>
+                      <Button onClick={checkOutHandler} color="primary">
                         Checkout
-                      </button>
-                      {/* <Link className={`${classes.Btn} ${classes.Continue_shopping}`}>
-                  Continue Shopping
-                </Link> */}
+                      </Button>
                     </td>
                   </tr>
                 </tfoot>

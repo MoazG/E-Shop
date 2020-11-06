@@ -18,6 +18,7 @@ import Loader from "../../Components/Loader";
 import classes from "../PlaceorderScreen/PlaceOrderScreen.module.css";
 import { CART_RESET_ITEMS } from "../../constants/cartConstants";
 import Alert from "../../Components/UI/Alert/Alert";
+import Button from "../../Components/UI/Button/Button";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -176,16 +177,14 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </td>
                         <td className={classes.Table_product_price}>
-                          <p>
-                            ${" "}
-                            {(
-                              (product.price * (100 - product.discount)) /
-                              100
-                            ).toFixed(2)}
-                          </p>
+                          ${" "}
+                          {(
+                            (product.price * (100 - product.discount)) /
+                            100
+                          ).toFixed(2)}
                         </td>
                         <td className={classes.Table_product_qty}>
-                          <p>{product.qty}</p>
+                          {product.qty}
                         </td>
                         <td className={classes.Table_product_total}>
                           ${" "}
@@ -244,9 +243,13 @@ const OrderScreen = ({ match, history }) => {
 
           {loadingDeliver && <Loader />}
           {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-            <button className={classes.Btn} onClick={deliverHandler}>
+            <Button
+              color="primary"
+              onClick={deliverHandler}
+              style={{ width: "100%", padding: ".6rem", marginBottom: "0" }}
+            >
               Mark As Delivered
-            </button>
+            </Button>
           )}
         </div>
       </div>
